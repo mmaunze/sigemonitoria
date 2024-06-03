@@ -14,6 +14,10 @@ public class AlterarSenha extends javax.swing.JFrame {
 
     Utilizador usuario;
 
+    /**
+     *
+     * @param usuario
+     */
     public AlterarSenha(Utilizador usuario) {
         initComponents();
         this.usuario = usuario;

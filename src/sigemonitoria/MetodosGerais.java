@@ -13,14 +13,29 @@ import java.util.Locale;
 import javax.swing.JComboBox;
 import javax.swing.JTextField;
 
+/**
+ *
+ * @author Meldo Maunze
+ */
 public interface MetodosGerais {
 
+    /**
+     *
+     * @param dataString
+     * @return
+     * @throws ParseException
+     */
     public default Date converterStringParaData(String dataString) throws ParseException {
         var formato = new SimpleDateFormat("dd/MM/yyyy");
         var dataUtil = formato.parse(dataString);
         return new Date(dataUtil.getTime());
     }
 
+    /**
+     *
+     * @param data
+     * @return
+     */
     public default String converteDataParaString(Date data) {
         var df = new SimpleDateFormat("yyyy-MM-dd");
         var dataFormatada = df.format(data);
@@ -47,6 +62,11 @@ public interface MetodosGerais {
         }
     }
 
+    /**
+     *
+     * @param dataNascimento
+     * @return
+     */
     public default int calcularIdade(String dataNascimento) {
         try {
             var sdf = new SimpleDateFormat("dd/MM/yyyy");
@@ -65,6 +85,11 @@ public interface MetodosGerais {
         }
     }
 
+    /**
+     *
+     * @param idade
+     * @return
+     */
     public default String calcularFaixaEtaria(int idade) {
         if (idade < 18) {
             return "<18";
@@ -89,6 +114,11 @@ public interface MetodosGerais {
         }
     }
 
+    /**
+     *
+     * @param numeroMes
+     * @return
+     */
     public default String obterMesPorExtenso(int numeroMes) {
         if (numeroMes < 1 || numeroMes > 12) {
             throw new IllegalArgumentException("Número de mês inválido. Deve estar entre 1 e 12.");
@@ -97,6 +127,10 @@ public interface MetodosGerais {
         return meses[numeroMes - 1];
     }
 
+    /**
+     *
+     * @param campo
+     */
     public default void habilitarCampo(JTextField campo) {
         campo.setEnabled(true);
         campo.setEditable(true);
@@ -104,6 +138,10 @@ public interface MetodosGerais {
         campo.requestFocus();
     }
 
+    /**
+     *
+     * @param campo
+     */
     public default void habilitarSelect(JComboBox<String> campo) {
         campo.setEnabled(true);
         campo.setEditable(true);
@@ -111,6 +149,10 @@ public interface MetodosGerais {
         campo.requestFocus();
     }
 
+    /**
+     *
+     * @param campo
+     */
     public default void desabilitarCampo(JTextField campo) {
         campo.setEnabled(false);
         campo.setEditable(false);
@@ -118,6 +160,10 @@ public interface MetodosGerais {
         campo.setText("");
     }
 
+    /**
+     *
+     * @param campo
+     */
     public default void desabilitarSelect(JComboBox<String> campo) {
         campo.setEnabled(false);
         campo.setEditable(false);

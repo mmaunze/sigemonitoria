@@ -24,10 +24,7 @@ import sigemonitoria.vista.MenuPrincipal;
  */
 public class InformacaoBasicaPaciente extends javax.swing.JFrame implements MetodosGerais {
 
-    EntityManagerFactory emf = createEntityManagerFactory("sigemonitoriaPU");
-    CasoJpaController casos = new CasoJpaController(emf);
     Caso caso = new Caso();
-    DoenteJpaController doentes = new DoenteJpaController(emf);
     Doente doente = new Doente();
     Utilizador usuario;
     private LocalTrabalhoResidencia frame2 = null;
@@ -534,7 +531,6 @@ public class InformacaoBasicaPaciente extends javax.swing.JFrame implements Meto
                 avancarBTN.requestFocus();
                 avancarBTN.setEnabled(true);
                 caso.setLocalDaUs(localUsValue);
-                
             } else {
                 showMessageDialog(this, "O local da US de Assitencia deve conter apenas letras.", "Entrada inválida", ERROR_MESSAGE);
                 localUsInput.requestFocus();
@@ -556,14 +552,14 @@ public class InformacaoBasicaPaciente extends javax.swing.JFrame implements Meto
                     Logger.getLogger(InformacaoBasicaPaciente.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 idadeInput.setText(Integer.toString(calcularIdade(dataTexto)));
-                //doente.setIdade();
+                doente.setIdade((short) calcularIdade(dataTexto));
                 faixaEtariaInput.setText(calcularFaixaEtaria(calcularIdade(dataTexto)));
-                    
+
                 idadeInput.setEnabled(true);
                 faixaEtariaInput.setEnabled(true);
-                //doente.setFaixaEtaria();
+                doente.setFaixaEtaria(calcularFaixaEtaria(calcularIdade(dataTexto)));
                 habilitarSelect(provinciaNascimentoInput);
-               
+
             } else {
                 showMessageDialog(this, "Formato de data inválido.\n Use dd/MM/aaaa.", "Data Invalida", ERROR_MESSAGE);
                 dataNascimentoInput.setText("");
@@ -592,7 +588,6 @@ public class InformacaoBasicaPaciente extends javax.swing.JFrame implements Meto
                 nidPreenchido = true;
                 doente.setNid(nidValue);
                 habilitarCampo(nomePacienteInput);
-
             } else {
                 showMessageDialog(this, "O NID do Paciente deve ter exatamente 5 dígitos.", "5 Digitos Obrigatorios", ERROR_MESSAGE);
                 nidInput.requestFocus();
@@ -660,7 +655,6 @@ public class InformacaoBasicaPaciente extends javax.swing.JFrame implements Meto
                 desabilitarCampo(nidInput);
             }
         } else {
-
             showMessageDialog(this, "Por favor, \npreencha o a Data de Registo do caso do Paciente primeiro.");
             dataRegistoCasoInput.requestFocus();
             desabilitarCampo(nidInput);
@@ -708,7 +702,7 @@ public class InformacaoBasicaPaciente extends javax.swing.JFrame implements Meto
     }//GEN-LAST:event_nivelCarreiraInputActionPerformed
 
     private void cancelarBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarBTNActionPerformed
-     showMessageDialog(this, "O cadastro foi cancelado");
+        showMessageDialog(this, "O cadastro foi cancelado");
         var escolherAccao = new MenuPrincipal(usuario);
         escolherAccao.setLocationRelativeTo(null);
         escolherAccao.setVisible(true);
@@ -717,7 +711,7 @@ public class InformacaoBasicaPaciente extends javax.swing.JFrame implements Meto
 
     private void gaurdarRascunhoBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gaurdarRascunhoBTNActionPerformed
 
-        String mensagem = "Para Aceder a Essa Funcionalidade \ndeve Fazer Upgrade do Seu Plano";
+        String mensagem = "Para aproveitar esta funcionalidade incrível, \n você pode fazer um upgrade do seu plano. \nContacte o desenvolvedor para mais detalhes";
         showMessageDialog(this, mensagem, "Funcionalidade Premium", ERROR_MESSAGE);
 
     }//GEN-LAST:event_gaurdarRascunhoBTNActionPerformed
@@ -823,7 +817,7 @@ public class InformacaoBasicaPaciente extends javax.swing.JFrame implements Meto
                 && sexoPreencido) {
 
             if (frame2 == null) {
-                frame2 = new LocalTrabalhoResidencia(this, doente, usuario);
+                frame2 = new LocalTrabalhoResidencia(this, doente, caso, usuario);
 
             }
             this.setVisible(false);

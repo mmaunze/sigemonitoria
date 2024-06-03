@@ -11,6 +11,9 @@ import static javax.swing.JOptionPane.showMessageDialog;
 import static javax.swing.UIManager.setLookAndFeel;
 import javax.swing.UnsupportedLookAndFeelException;
 import sigemonitoria.MetodosGerais;
+import sigemonitoria.controller.CasoJpaController;
+import sigemonitoria.controller.DoenteJpaController;
+import sigemonitoria.modelo.Caso;
 import sigemonitoria.modelo.Doente;
 import sigemonitoria.modelo.Utilizador;
 import sigemonitoria.vista.MenuPrincipal;
@@ -20,9 +23,9 @@ import sigemonitoria.vista.MenuPrincipal;
  * @author Meldo Maunze
  */
 public class LocalTrabalhoResidencia extends javax.swing.JFrame implements MetodosGerais {
-    
-    EntityManagerFactory emf = createEntityManagerFactory("sigemonitoriaPU");
-    EntityManager entityManager = emf.createEntityManager();
+        
+    Caso caso ;
+  
     Doente doente;
     Utilizador usuario;
     
@@ -30,19 +33,20 @@ public class LocalTrabalhoResidencia extends javax.swing.JFrame implements Metod
     private ControleSeguimento frame3 = null;
 
     /**
-     * Creates new form LocalTrabalhoResidencia
      *
-     * @param frame1
-     * @param doente
-     * @param usuario
+     * @param frame1 the value of frame1
+     * @param doente the value of doente
+     * @param caso the value of caso
+     * @param usuario the value of usuario
      */
-    public LocalTrabalhoResidencia(InformacaoBasicaPaciente frame1, Doente doente, Utilizador usuario) {
+    public LocalTrabalhoResidencia(InformacaoBasicaPaciente frame1, Doente doente, Caso caso, Utilizador usuario) {
         initComponents();
         this.frame1 = frame1;
         this.usuario = usuario;
         this.doente = doente;
         this.username.setText(usuario.getNomeCompleto());
         this.hospital.setText(usuario.getHospital().getNomeHospital());
+        this.caso = caso;
 
     }
     
@@ -346,10 +350,11 @@ public class LocalTrabalhoResidencia extends javax.swing.JFrame implements Metod
     boolean sectorTrabalhoPreenchido = false;
     
     private void estabelecimentoSaudeInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_estabelecimentoSaudeInputActionPerformed
-        var usAssistenciaValue = estabelecimentoSaudeInput.getText().trim();
-        if (usAssistenciaValue != null && !usAssistenciaValue.trim().isEmpty()) {
-            if (usAssistenciaValue.matches("[a-zA-Z ]+")) {
+        var estabelecimentoSaudeValue = estabelecimentoSaudeInput.getText().trim();
+        if (estabelecimentoSaudeValue != null && !estabelecimentoSaudeValue.trim().isEmpty()) {
+            if (estabelecimentoSaudeValue.matches("[a-zA-Z ]+")) {
                 estabelecimentoSaudePreenchido = true;
+                caso.setEstabelecimentoSaude(estabelecimentoSaudeValue);
                 habilitarSelect(sectorTrabalhoInput);
             } else {
                 showMessageDialog(this, "O estabelecimento de Saude deve conter apenas letras.", "Entrada inválida", ERROR_MESSAGE);
@@ -377,6 +382,7 @@ public class LocalTrabalhoResidencia extends javax.swing.JFrame implements Metod
                     || "Niassa".equals(valorSeleccionado)
                     || "Cabo Delgado".equals(valorSeleccionado)) {
                 provinciaResidenciaPreenchido = true;
+                doente.setProvinciaResidencia(valorSeleccionado);
                 habilitarCampo(distritoResidenciaInput);
             } else {
                 showMessageDialog(this, "Seleccione uma provincia válida", "Provincia inválida", ERROR_MESSAGE);
@@ -396,6 +402,7 @@ public class LocalTrabalhoResidencia extends javax.swing.JFrame implements Metod
         if (distritoValue != null && !distritoValue.trim().isEmpty()) {
             if (distritoValue.matches("[a-zA-Z ]+")) {
                 distritoResidenciaPreenchido = true;
+                doente.setDistritoResidencia(distritoValue);
                 habilitarCampo(estabelecimentoSaudeInput);
             } else {
                 showMessageDialog(this, "O Distrito deve conter apenas letras.", "Entrada inválida", ERROR_MESSAGE);
@@ -424,12 +431,13 @@ public class LocalTrabalhoResidencia extends javax.swing.JFrame implements Metod
     }//GEN-LAST:event_avancarBTN1ActionPerformed
 
     private void moradaInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_moradaInputActionPerformed
-        var usAssistenciaValue = moradaInput.getText().trim();
-        if (usAssistenciaValue != null && !usAssistenciaValue.trim().isEmpty()) {
-            if (usAssistenciaValue.matches("[a-zA-Z ]+")) {
+        var moradaValue = moradaInput.getText().trim();
+        if (moradaValue != null && !moradaValue.trim().isEmpty()) {
+            if (moradaValue.matches("[a-zA-Z ]+")) {
                 moradaPreenchido = true;
                 avancarBTN.requestFocus();
                 avancarBTN.setEnabled(true);
+                doente.setMorada(moradaValue);
                 
             } else {
                 showMessageDialog(this, "A morada deve conter apenas letras.", "Entrada inválida", ERROR_MESSAGE);
@@ -449,6 +457,7 @@ public class LocalTrabalhoResidencia extends javax.swing.JFrame implements Metod
                     || "Gaza".equals(valorSeleccionado)) {
                 sectorTrabalhoPreenchido = true;
                 habilitarCampo(moradaInput);
+                doente.setSectorTrabalho(valorSeleccionado);
             } else {
                 showMessageDialog(this, "Seleccione um sector válido", "Sector de Trabalho inválido", ERROR_MESSAGE);
                 sectorTrabalhoInput.requestFocus();
@@ -484,7 +493,7 @@ public class LocalTrabalhoResidencia extends javax.swing.JFrame implements Metod
                 && sectorTrabalhoPreenchido
                 && moradaPreenchido) {
             if (frame3 == null) {
-                frame3 = new ControleSeguimento(this, doente, usuario);
+                frame3 = new ControleSeguimento(this, doente, caso, usuario);
             }
             this.setVisible(false);
             frame3.setVisible(true);

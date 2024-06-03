@@ -1,4 +1,7 @@
-
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 package sigemonitoria.modelo;
 
 import java.io.Serializable;
@@ -37,7 +40,9 @@ import javax.persistence.TemporalType;
     @NamedQuery(name = "Doente.findByProvinciaResidencia", query = "SELECT d FROM Doente d WHERE d.provinciaResidencia = :provinciaResidencia"),
     @NamedQuery(name = "Doente.findByDistritoResidencia", query = "SELECT d FROM Doente d WHERE d.distritoResidencia = :distritoResidencia"),
     @NamedQuery(name = "Doente.findByMorada", query = "SELECT d FROM Doente d WHERE d.morada = :morada"),
-    @NamedQuery(name = "Doente.findBySectorTrabalho", query = "SELECT d FROM Doente d WHERE d.sectorTrabalho = :sectorTrabalho")})
+    @NamedQuery(name = "Doente.findBySectorTrabalho", query = "SELECT d FROM Doente d WHERE d.sectorTrabalho = :sectorTrabalho"),
+    @NamedQuery(name = "Doente.findByIdade", query = "SELECT d FROM Doente d WHERE d.idade = :idade"),
+    @NamedQuery(name = "Doente.findByFaixaEtaria", query = "SELECT d FROM Doente d WHERE d.faixaEtaria = :faixaEtaria")})
 public class Doente implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -70,6 +75,9 @@ public class Doente implements Serializable {
     private String morada;
     @Column(name = "sector_trabalho", length = 175)
     private String sectorTrabalho;
+    private Short idade;
+    @Column(name = "faixa_etaria", length = 30)
+    private String faixaEtaria;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "nid", fetch = FetchType.LAZY)
     private List<Caso> casoList;
 
@@ -182,6 +190,22 @@ public class Doente implements Serializable {
 
     public void setSectorTrabalho(String sectorTrabalho) {
         this.sectorTrabalho = sectorTrabalho;
+    }
+
+    public Short getIdade() {
+        return idade;
+    }
+
+    public void setIdade(Short idade) {
+        this.idade = idade;
+    }
+
+    public String getFaixaEtaria() {
+        return faixaEtaria;
+    }
+
+    public void setFaixaEtaria(String faixaEtaria) {
+        this.faixaEtaria = faixaEtaria;
     }
 
     public List<Caso> getCasoList() {

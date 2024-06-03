@@ -21,14 +21,27 @@ import sigemonitoria.modelo.Utilizador;
 public class UtilizadorJpaController implements Serializable {
 
     private EntityManagerFactory emf = null;
+
+    /**
+     *
+     * @param emf
+     */
     public UtilizadorJpaController(EntityManagerFactory emf) {
         this.emf = emf;
     }
 
+    /**
+     *
+     * @return
+     */
     public EntityManager getEntityManager() {
         return emf.createEntityManager();
     }
 
+    /**
+     *
+     * @param utilizador
+     */
     public void create(Utilizador utilizador) {
         EntityManager em = null;
         try {
@@ -61,6 +74,12 @@ public class UtilizadorJpaController implements Serializable {
         }
     }
 
+    /**
+     *
+     * @param utilizador
+     * @throws NonexistentEntityException
+     * @throws Exception
+     */
     public void edit(Utilizador utilizador) throws NonexistentEntityException, Exception {
         EntityManager em = null;
         try {
@@ -113,6 +132,11 @@ public class UtilizadorJpaController implements Serializable {
         }
     }
 
+    /**
+     *
+     * @param id
+     * @throws NonexistentEntityException
+     */
     public void destroy(Short id) throws NonexistentEntityException {
         EntityManager em = null;
         try {
@@ -144,10 +168,20 @@ public class UtilizadorJpaController implements Serializable {
         }
     }
 
+    /**
+     *
+     * @return
+     */
     public List<Utilizador> findUtilizadorEntities() {
         return findUtilizadorEntities(true, -1, -1);
     }
 
+    /**
+     *
+     * @param maxResults
+     * @param firstResult
+     * @return
+     */
     public List<Utilizador> findUtilizadorEntities(int maxResults, int firstResult) {
         return findUtilizadorEntities(false, maxResults, firstResult);
     }
@@ -168,6 +202,11 @@ public class UtilizadorJpaController implements Serializable {
         }
     }
 
+    /**
+     *
+     * @param id
+     * @return
+     */
     public Utilizador findUtilizador(Short id) {
         EntityManager em = getEntityManager();
         try {
@@ -177,6 +216,10 @@ public class UtilizadorJpaController implements Serializable {
         }
     }
 
+    /**
+     *
+     * @return
+     */
     public int getUtilizadorCount() {
         EntityManager em = getEntityManager();
         try {

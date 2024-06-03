@@ -1,4 +1,7 @@
-
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 package sigemonitoria.modelo;
 
 import java.io.Serializable;
@@ -110,12 +113,14 @@ public class Caso implements Serializable {
     @Column(name = "situacao_actual_paciente", nullable = false, length = 75)
     private String situacaoActualPaciente;
     @Basic(optional = false)
-    @Column(name = "data_facelimento", nullable = false)
+    @Column(name = "data_facelimento")
     @Temporal(TemporalType.TIMESTAMP)
     private Date dataFacelimento;
+    
     @Basic(optional = false)
     @Column(nullable = false, length = 120)
     private String observacao;
+    
     @JoinColumn(name = "nid", referencedColumnName = "nid", nullable = false)
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private Doente nid;

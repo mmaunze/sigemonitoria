@@ -20,14 +20,27 @@ import sigemonitoria.modelo.Doente;
 public class CasoJpaController implements Serializable {
 
     private EntityManagerFactory emf = null;
+
+    /**
+     *
+     * @param emf
+     */
     public CasoJpaController(EntityManagerFactory emf) {
         this.emf = emf;
     }
 
+    /**
+     *
+     * @return
+     */
     public EntityManager getEntityManager() {
         return emf.createEntityManager();
     }
 
+    /**
+     *
+     * @param caso
+     */
     public void create(Caso caso) {
         EntityManager em = null;
         try {
@@ -51,6 +64,12 @@ public class CasoJpaController implements Serializable {
         }
     }
 
+    /**
+     *
+     * @param caso
+     * @throws NonexistentEntityException
+     * @throws Exception
+     */
     public void edit(Caso caso) throws NonexistentEntityException, Exception {
         EntityManager em = null;
         try {
@@ -89,6 +108,11 @@ public class CasoJpaController implements Serializable {
         }
     }
 
+    /**
+     *
+     * @param id
+     * @throws NonexistentEntityException
+     */
     public void destroy(Long id) throws NonexistentEntityException {
         EntityManager em = null;
         try {
@@ -115,10 +139,20 @@ public class CasoJpaController implements Serializable {
         }
     }
 
+    /**
+     *
+     * @return
+     */
     public List<Caso> findCasoEntities() {
         return findCasoEntities(true, -1, -1);
     }
 
+    /**
+     *
+     * @param maxResults
+     * @param firstResult
+     * @return
+     */
     public List<Caso> findCasoEntities(int maxResults, int firstResult) {
         return findCasoEntities(false, maxResults, firstResult);
     }
@@ -139,6 +173,11 @@ public class CasoJpaController implements Serializable {
         }
     }
 
+    /**
+     *
+     * @param id
+     * @return
+     */
     public Caso findCaso(Long id) {
         EntityManager em = getEntityManager();
         try {
@@ -148,6 +187,10 @@ public class CasoJpaController implements Serializable {
         }
     }
 
+    /**
+     *
+     * @return
+     */
     public int getCasoCount() {
         EntityManager em = getEntityManager();
         try {

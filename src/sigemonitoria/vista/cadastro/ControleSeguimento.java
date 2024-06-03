@@ -1,13 +1,23 @@
 package sigemonitoria.vista.cadastro;
 
 import static java.awt.EventQueue.invokeLater;
+import java.text.ParseException;
+import java.util.logging.Level;
 import static java.util.logging.Level.SEVERE;
+import java.util.logging.Logger;
 import static java.util.logging.Logger.getLogger;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import static javax.persistence.Persistence.createEntityManagerFactory;
+import javax.swing.JOptionPane;
 import static javax.swing.JOptionPane.ERROR_MESSAGE;
 import static javax.swing.JOptionPane.showMessageDialog;
 import static javax.swing.UIManager.setLookAndFeel;
 import javax.swing.UnsupportedLookAndFeelException;
 import sigemonitoria.MetodosGerais;
+import sigemonitoria.controller.CasoJpaController;
+import sigemonitoria.controller.DoenteJpaController;
+import sigemonitoria.modelo.Caso;
 import sigemonitoria.modelo.Doente;
 import sigemonitoria.modelo.Utilizador;
 import sigemonitoria.vista.MenuPrincipal;
@@ -18,23 +28,30 @@ import sigemonitoria.vista.MenuPrincipal;
  */
 public class ControleSeguimento extends javax.swing.JFrame implements MetodosGerais {
 
-    Doente doente = new Doente();
+    EntityManagerFactory emf = createEntityManagerFactory("sigemonitoriaPU");
+    
+    DoenteJpaController doentes = new DoenteJpaController(emf);
+    CasoJpaController casos = new CasoJpaController(emf);
+    Caso caso ;
+    Doente doente ;
     Utilizador usuario;
+    
     private LocalTrabalhoResidencia frame2 = null;
     /**
      * @param frame2
      * @param doente the value of doente
+     * @param caso
      * @param usuario the value of usuario
      */
-    public ControleSeguimento(LocalTrabalhoResidencia frame2, Doente doente, Utilizador usuario) {
+    public ControleSeguimento(LocalTrabalhoResidencia frame2, Doente doente, Caso caso, Utilizador usuario) {
         initComponents();
         this.doente = doente;
         this.frame2 = frame2;
         this.usuario = usuario;
         this.username.setText(usuario.getNomeCompleto());
         this.hospital.setText(usuario.getHospital().getNomeHospital());
-
-     
+        this.caso = caso;
+        this.caso.setNid(doente);
     }
 
     private ControleSeguimento() {
@@ -351,6 +368,11 @@ public class ControleSeguimento extends javax.swing.JFrame implements MetodosGer
 
         guardarBTN.setBackground(new java.awt.Color(153, 255, 153));
         guardarBTN.setText("guardar");
+        guardarBTN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                guardarBTNActionPerformed(evt);
+            }
+        });
 
         avancarBTN1.setBackground(new java.awt.Color(255, 0, 0));
         avancarBTN1.setForeground(new java.awt.Color(255, 255, 255));
@@ -539,7 +561,7 @@ public class ControleSeguimento extends javax.swing.JFrame implements MetodosGer
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-        boolean consultaMedicaPreenchido = false;
+    boolean consultaMedicaPreenchido = false;
     boolean enfermidadePreenchido = false;
     boolean rastreioPreenchido = false;
     boolean diagnosticoPreenchido = false;
@@ -559,6 +581,11 @@ public class ControleSeguimento extends javax.swing.JFrame implements MetodosGer
             dataConsultaAnteriorPreencido = true;
             if (dataValida(dataTexto)) {
                 habilitarSelect(espActualInput);
+                try {
+                    caso.setDataConsultaAnterior(converterStringParaData(dataTexto));
+                } catch (ParseException ex) {
+                    Logger.getLogger(ControleSeguimento.class.getName()).log(Level.SEVERE, null, ex);
+                }
             } else {
                 showMessageDialog(this, "Formato de data inválido.\n Use dd/MM/aaaa.", "Data Invalida", ERROR_MESSAGE);
                 desabilitarSelect(espActualInput);
@@ -580,6 +607,7 @@ public class ControleSeguimento extends javax.swing.JFrame implements MetodosGer
                     || "Não Aplicável".equals(valorSeleccionado)) {
                 aonPreenchido = true;
                 habilitarSelect(apssInput);
+                caso.setAon(valorSeleccionado);
             } else {
                 showMessageDialog(this, "Seleccione uma opcao válida", "Escolha inválida", ERROR_MESSAGE);
                 aonInput.requestFocus();
@@ -596,7 +624,7 @@ public class ControleSeguimento extends javax.swing.JFrame implements MetodosGer
         var valorSeleccionado = (String) enfermidadeInput.getSelectedItem();
         if (!("seleccionar".equals(valorSeleccionado))) {
             if ("HIV e Hipertensão".equals(valorSeleccionado)
-                      || "HIV".equals(valorSeleccionado)
+                    || "HIV".equals(valorSeleccionado)
                     || "HIV e TB".equals(valorSeleccionado)
                     || "Câncro da próstata".equals(valorSeleccionado)
                     || "Cancro uterino".equals(valorSeleccionado)
@@ -610,6 +638,7 @@ public class ControleSeguimento extends javax.swing.JFrame implements MetodosGer
                     || "Hipertensão e Diabetes".equals(valorSeleccionado)) {
                 enfermidadePreenchido = true;
                 habilitarSelect(rastreioInput);
+                caso.setEnfermidade(valorSeleccionado);
             } else {
                 showMessageDialog(this, "Seleccione uma opcao válida", "Escolha inválida", ERROR_MESSAGE);
                 enfermidadeInput.requestFocus();
@@ -631,6 +660,7 @@ public class ControleSeguimento extends javax.swing.JFrame implements MetodosGer
                     || "Não Aplicável".equals(valorSeleccionado)) {
                 apssPreenchido = true;
                 habilitarSelect(espAnteriorInput);
+                caso.setApss(valorSeleccionado);
             } else {
                 showMessageDialog(this, "Seleccione uma opcao válida", "Escolha inválida", ERROR_MESSAGE);
                 apssInput.requestFocus();
@@ -650,6 +680,7 @@ public class ControleSeguimento extends javax.swing.JFrame implements MetodosGer
                     || "Não Determinado".equals(valorSeleccionado)) {
                 diagnosticoPreenchido = true;
                 habilitarSelect(aonInput);
+                caso.setDiagnostico(valorSeleccionado);
             } else {
                 showMessageDialog(this, "Seleccione uma opcao válida", "Escolha inválida", ERROR_MESSAGE);
                 diagnosticoInput.requestFocus();
@@ -670,6 +701,7 @@ public class ControleSeguimento extends javax.swing.JFrame implements MetodosGer
                     || "Mal".equals(valorSeleccionado)) {
                 espProximoPreenchido = true;
                 habilitarSelect(situacaoActualPacienteInput);
+                caso.setEspProximo(valorSeleccionado);
             } else {
                 showMessageDialog(this, "Seleccione uma opcao válida", "Escolha inválida", ERROR_MESSAGE);
                 espObservadoInput.requestFocus();
@@ -689,6 +721,7 @@ public class ControleSeguimento extends javax.swing.JFrame implements MetodosGer
             if (situacaoActualPacienteSelecionado.equals("Falecido")) {
                 habilitarCampo(dataFacecimentoInput);
                 situacaoActualPacienteInput.requestFocus();
+                caso.setSituacaoActualPaciente(situacaoActualPacienteSelecionado);
             }else{
                guardarBTN.requestFocus();
                guardarBTN.setEnabled(true);            
@@ -707,6 +740,7 @@ public class ControleSeguimento extends javax.swing.JFrame implements MetodosGer
                     || "Não rastreado".equals(valorSeleccionado)) {
                 rastreioPreenchido = true;
                 habilitarSelect(diagnosticoInput);
+                caso.setRastreio(valorSeleccionado);
             } else {
                 showMessageDialog(this, "Seleccione uma opcao válida", "Escolha inválida", ERROR_MESSAGE);
                 rastreioInput.requestFocus();
@@ -727,6 +761,7 @@ public class ControleSeguimento extends javax.swing.JFrame implements MetodosGer
                     || "Mal".equals(valorSeleccionado)) {
                 espActualPreenchido = true;
                 habilitarCampo(dataConsultaActualInput);
+                caso.setEspActual(valorSeleccionado);
             } else {
                 showMessageDialog(this, "Seleccione uma opcao válida", "Escolha inválida", ERROR_MESSAGE);
                 espActualInput.requestFocus();
@@ -749,6 +784,11 @@ public class ControleSeguimento extends javax.swing.JFrame implements MetodosGer
             dataProximaConsultaPreencido = true;
             if (dataValida(dataTexto)) {
                 habilitarSelect(espObservadoInput);
+                try {
+                    caso.setDataProxima(converterStringParaData(dataTexto));
+                } catch (ParseException ex) {
+                    Logger.getLogger(ControleSeguimento.class.getName()).log(Level.SEVERE, null, ex);
+                }
             } else {
                 showMessageDialog(this, "Formato de data inválido.\n Use dd/MM/aaaa.", "Data Invalida", ERROR_MESSAGE);
                 desabilitarSelect(espObservadoInput);
@@ -768,7 +808,9 @@ public class ControleSeguimento extends javax.swing.JFrame implements MetodosGer
                     || "Normal".equals(valorSeleccionado)
                     || "Mal".equals(valorSeleccionado)) {
                 espAnteriorPreenchido = true;
+                
                 habilitarCampo(dataConsultaAnteriorInput);
+                caso.setEspAnterior(valorSeleccionado);
             } else {
                 showMessageDialog(this, "Seleccione uma opcao válida", "Escolha inválida", ERROR_MESSAGE);
                 espAnteriorInput.requestFocus();
@@ -787,6 +829,11 @@ public class ControleSeguimento extends javax.swing.JFrame implements MetodosGer
             dataConsultaActualPreencido = true;
             if (dataValida(dataTexto)) {
                 habilitarCampo(dataProximaConsultaInput);
+                try {
+                    caso.setDataConsultaActual(converterStringParaData(dataTexto));
+                } catch (ParseException ex) {
+                    Logger.getLogger(ControleSeguimento.class.getName()).log(Level.SEVERE, null, ex);
+                }
             } else {
                 showMessageDialog(this, "Formato de data inválido.\n Use dd/MM/aaaa.", "Data Invalida", ERROR_MESSAGE);
                 desabilitarCampo(dataProximaConsultaInput);
@@ -807,6 +854,7 @@ public class ControleSeguimento extends javax.swing.JFrame implements MetodosGer
                     || "Nunca foi a consulta".equals(valorSeleccionado)) {
                 consultaMedicaPreenchido = true;
                 habilitarSelect(enfermidadeInput);
+                caso.setConsultaMedica(valorSeleccionado);
             } else {
                 showMessageDialog(this, "Seleccione uma opcao válida", "Escolha inválida", ERROR_MESSAGE);
                 consultaMedicaInput.requestFocus();
@@ -848,6 +896,23 @@ public class ControleSeguimento extends javax.swing.JFrame implements MetodosGer
         frame2.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_recuarBTNActionPerformed
+
+    private void guardarBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarBTNActionPerformed
+
+        try {
+            doentes.create(doente);
+JOptionPane.showMessageDialog(this, "Doente Registado\n" + doente.toString(), "Doente Registado", JOptionPane.INFORMATION_MESSAGE);
+
+        } catch (Exception ex) {
+            Logger.getLogger(ControleSeguimento.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        caso.setObservacao("Registo de Um novo Caso");
+        casos.create(caso);
+        System.out.println(caso);
+        showMessageDialog(this, caso + usuario.getNomeCompleto());
+
+    }//GEN-LAST:event_guardarBTNActionPerformed
 
     /**
      * @param args the command line arguments

@@ -18,6 +18,10 @@ public class ProduzirRelatorioPeriodico extends javax.swing.JFrame {
 
     Utilizador usuario;
 
+    /**
+     *
+     * @param usuario
+     */
     public ProduzirRelatorioPeriodico(Utilizador usuario) {
         initComponents();
         this.usuario = usuario;

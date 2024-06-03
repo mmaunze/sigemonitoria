@@ -1,19 +1,22 @@
-
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 package sigemonitoria.controller;
 
 import java.io.Serializable;
+import javax.persistence.Query;
+import javax.persistence.EntityNotFoundException;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
+import sigemonitoria.modelo.Utilizador;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
-import javax.persistence.EntityNotFoundException;
-import javax.persistence.Query;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Root;
 import sigemonitoria.controller.exceptions.IllegalOrphanException;
 import sigemonitoria.controller.exceptions.NonexistentEntityException;
 import sigemonitoria.modelo.TipoUtilizador;
-import sigemonitoria.modelo.Utilizador;
 
 /**
  *
@@ -21,10 +24,10 @@ import sigemonitoria.modelo.Utilizador;
  */
 public class TipoUtilizadorJpaController implements Serializable {
 
-    private EntityManagerFactory emf = null;
     public TipoUtilizadorJpaController(EntityManagerFactory emf) {
         this.emf = emf;
     }
+    private EntityManagerFactory emf = null;
 
     public EntityManager getEntityManager() {
         return emf.createEntityManager();
@@ -190,7 +193,7 @@ public class TipoUtilizadorJpaController implements Serializable {
             Root<TipoUtilizador> rt = cq.from(TipoUtilizador.class);
             cq.select(em.getCriteriaBuilder().count(rt));
             Query q = em.createQuery(cq);
-            return ((Number) q.getSingleResult()).intValue();
+            return ((Long) q.getSingleResult()).intValue();
         } finally {
             em.close();
         }

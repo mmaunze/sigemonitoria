@@ -23,6 +23,10 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
     Utilizador usuario;
 
+    /**
+     *
+     * @param usuario
+     */
     public MenuPrincipal(Utilizador usuario) {
         initComponents();
         this.usuario = usuario;

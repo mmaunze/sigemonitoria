@@ -22,14 +22,27 @@ import sigemonitoria.modelo.Utilizador;
 public class HospitalJpaController implements Serializable {
 
     private EntityManagerFactory emf = null;
+
+    /**
+     *
+     * @param emf
+     */
     public HospitalJpaController(EntityManagerFactory emf) {
         this.emf = emf;
     }
 
+    /**
+     *
+     * @return
+     */
     public EntityManager getEntityManager() {
         return emf.createEntityManager();
     }
 
+    /**
+     *
+     * @param hospital
+     */
     public void create(Hospital hospital) {
         if (hospital.getUtilizadorList() == null) {
             hospital.setUtilizadorList(new ArrayList<Utilizador>());
@@ -62,6 +75,13 @@ public class HospitalJpaController implements Serializable {
         }
     }
 
+    /**
+     *
+     * @param hospital
+     * @throws IllegalOrphanException
+     * @throws NonexistentEntityException
+     * @throws Exception
+     */
     public void edit(Hospital hospital) throws IllegalOrphanException, NonexistentEntityException, Exception {
         EntityManager em = null;
         try {
@@ -118,6 +138,12 @@ public class HospitalJpaController implements Serializable {
         }
     }
 
+    /**
+     *
+     * @param id
+     * @throws IllegalOrphanException
+     * @throws NonexistentEntityException
+     */
     public void destroy(Short id) throws IllegalOrphanException, NonexistentEntityException {
         EntityManager em = null;
         try {
@@ -150,10 +176,20 @@ public class HospitalJpaController implements Serializable {
         }
     }
 
+    /**
+     *
+     * @return
+     */
     public List<Hospital> findHospitalEntities() {
         return findHospitalEntities(true, -1, -1);
     }
 
+    /**
+     *
+     * @param maxResults
+     * @param firstResult
+     * @return
+     */
     public List<Hospital> findHospitalEntities(int maxResults, int firstResult) {
         return findHospitalEntities(false, maxResults, firstResult);
     }
@@ -174,6 +210,11 @@ public class HospitalJpaController implements Serializable {
         }
     }
 
+    /**
+     *
+     * @param id
+     * @return
+     */
     public Hospital findHospital(Short id) {
         EntityManager em = getEntityManager();
         try {
@@ -183,6 +224,10 @@ public class HospitalJpaController implements Serializable {
         }
     }
 
+    /**
+     *
+     * @return
+     */
     public int getHospitalCount() {
         EntityManager em = getEntityManager();
         try {
