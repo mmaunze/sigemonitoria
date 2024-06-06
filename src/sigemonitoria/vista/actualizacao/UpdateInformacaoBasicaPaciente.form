@@ -25,14 +25,17 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" attributes="0">
+          <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
                       <Component id="cabecalho" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      <EmptySpace min="63" pref="97" max="32767" attributes="0"/>
                   </Group>
-                  <Component id="cadastro" max="32767" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <Component id="cadastro" max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                  </Group>
               </Group>
           </Group>
       </Group>
@@ -147,74 +150,71 @@
       </SubComponents>
     </Container>
     <Container class="javax.swing.JPanel" name="cadastro">
-      <Properties>
-        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="ff" green="ff" red="ff" type="rgb"/>
-        </Property>
-      </Properties>
 
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" attributes="0">
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="lema" min="-2" pref="251" max="-2" attributes="0"/>
-                          <EmptySpace max="32767" attributes="0"/>
-                      </Group>
-                      <Group type="102" attributes="0">
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" attributes="0">
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="dataRegisto" max="32767" attributes="0"/>
-                                      <Component id="nomePacienteLabel" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="carreiraLabel" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="categoriaLabel" max="32767" attributes="0"/>
-                                      <Component id="idadeLabel" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="provinciaNacimentoLabel" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="usAssitenciaLabel" alignment="0" max="32767" attributes="0"/>
-                                  </Group>
-                                  <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="dataRegistoCasoInput" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="nomePacienteInput" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="carreiraInput" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="idadeInput" max="32767" attributes="0"/>
-                                      <Component id="categoriaInput" max="32767" attributes="0"/>
-                                      <Component id="usAssistenciaInput" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="provinciaNascimentoInput" alignment="0" max="32767" attributes="0"/>
-                                  </Group>
-                              </Group>
-                              <Component id="username" max="32767" attributes="0"/>
-                          </Group>
-                          <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
-                      </Group>
-                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="lema" min="-2" pref="251" max="-2" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="gaurdarRascunhoBTN" max="32767" attributes="0"/>
                       <Component id="recuarBTN" max="32767" attributes="0"/>
-                      <Component id="dataNascimentoLabel" alignment="0" max="32767" attributes="0"/>
-                      <Component id="sexoLabel" alignment="0" max="32767" attributes="0"/>
-                      <Component id="nivelCarreiraLabel" alignment="0" max="32767" attributes="0"/>
-                      <Component id="nidLabel" alignment="1" max="32767" attributes="0"/>
-                      <Component id="FaixaEtariaLabel" alignment="0" max="32767" attributes="0"/>
-                      <Component id="distritoNascimentoLabel" alignment="0" max="32767" attributes="0"/>
-                      <Component id="localUsLabel" alignment="0" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="avancarBTN" alignment="0" max="32767" attributes="0"/>
-                      <Component id="dataNascimentoInput" alignment="0" max="32767" attributes="0"/>
-                      <Component id="faixaEtariaInput" alignment="0" max="32767" attributes="0"/>
-                      <Component id="localUsInput" alignment="0" max="32767" attributes="0"/>
-                      <Component id="nivelCarreiraInput" alignment="0" max="32767" attributes="0"/>
-                      <Component id="sexoInput" alignment="0" max="32767" attributes="0"/>
-                      <Component id="nidInput" alignment="0" max="32767" attributes="0"/>
-                      <Component id="distritoNascimentoInput" alignment="0" max="32767" attributes="0"/>
                       <Component id="cancelarBTN" alignment="1" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
+              </Group>
+              <Group type="102" alignment="0" attributes="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="dataRegisto" max="32767" attributes="0"/>
+                              <Component id="nomePacienteLabel" alignment="0" max="32767" attributes="0"/>
+                              <Component id="carreiraLabel" alignment="0" max="32767" attributes="0"/>
+                              <Component id="categoriaLabel" max="32767" attributes="0"/>
+                              <Component id="idadeLabel" alignment="0" max="32767" attributes="0"/>
+                              <Component id="provinciaNacimentoLabel" alignment="0" max="32767" attributes="0"/>
+                              <Component id="usAssitenciaLabel" alignment="0" max="32767" attributes="0"/>
+                          </Group>
+                          <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="dataRegistoCasoInput" alignment="0" max="32767" attributes="0"/>
+                              <Component id="nomePacienteInput" alignment="0" max="32767" attributes="0"/>
+                              <Component id="carreiraInput" alignment="0" max="32767" attributes="0"/>
+                              <Component id="idadeInput" max="32767" attributes="0"/>
+                              <Component id="categoriaInput" max="32767" attributes="0"/>
+                              <Component id="usAssistenciaInput" alignment="0" max="32767" attributes="0"/>
+                              <Component id="provinciaNascimentoInput" alignment="0" max="32767" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <Component id="username" max="32767" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="dataNascimentoLabel" linkSize="5" alignment="0" min="-2" pref="121" max="-2" attributes="0"/>
+                      <Component id="sexoLabel" linkSize="5" alignment="0" min="-2" pref="121" max="-2" attributes="0"/>
+                      <Component id="nivelCarreiraLabel" linkSize="5" alignment="0" min="-2" pref="121" max="-2" attributes="0"/>
+                      <Component id="nidLabel" linkSize="5" alignment="1" min="-2" pref="121" max="-2" attributes="0"/>
+                      <Component id="FaixaEtariaLabel" linkSize="5" alignment="0" min="-2" pref="121" max="-2" attributes="0"/>
+                      <Component id="distritoNascimentoLabel" linkSize="5" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="localUsLabel" linkSize="5" alignment="0" min="-2" pref="121" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="dataNascimentoInput" linkSize="5" alignment="0" min="-2" pref="201" max="-2" attributes="0"/>
+                      <Component id="faixaEtariaInput" linkSize="5" alignment="0" min="-2" pref="201" max="-2" attributes="0"/>
+                      <Component id="localUsInput" linkSize="5" alignment="0" min="-2" pref="201" max="-2" attributes="0"/>
+                      <Component id="nivelCarreiraInput" linkSize="5" alignment="0" min="-2" pref="201" max="-2" attributes="0"/>
+                      <Component id="sexoInput" linkSize="5" alignment="0" min="-2" pref="201" max="-2" attributes="0"/>
+                      <Component id="nidInput" linkSize="5" alignment="0" min="-2" pref="201" max="-2" attributes="0"/>
+                      <Component id="distritoNascimentoInput" linkSize="5" alignment="0" min="-2" pref="201" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -223,33 +223,7 @@
               <Group type="102" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="0" attributes="0">
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="nidLabel" linkSize="4" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="nidInput" linkSize="4" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="sexoInput" linkSize="4" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="sexoLabel" linkSize="4" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="nivelCarreiraInput" linkSize="4" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="nivelCarreiraLabel" linkSize="4" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="dataNascimentoLabel" alignment="0" min="-2" pref="22" max="-2" attributes="0"/>
-                              <Component id="dataNascimentoInput" linkSize="4" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="FaixaEtariaLabel" linkSize="4" min="-2" max="-2" attributes="0"/>
-                              <Component id="faixaEtariaInput" linkSize="4" alignment="0" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
+                      <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="dataRegistoCasoInput" linkSize="4" min="-2" max="-2" attributes="0"/>
@@ -276,25 +250,55 @@
                               <Component id="idadeInput" linkSize="4" min="-2" max="-2" attributes="0"/>
                               <Component id="idadeLabel" linkSize="4" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" attributes="0">
+                                  <Component id="provinciaNacimentoLabel" linkSize="4" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="3" attributes="0">
+                                      <Component id="usAssistenciaInput" linkSize="4" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="usAssitenciaLabel" linkSize="4" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                              <Component id="provinciaNascimentoInput" linkSize="4" alignment="0" min="-2" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
-                  </Group>
-                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="nidLabel" linkSize="4" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="nidInput" linkSize="4" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="sexoInput" linkSize="4" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="sexoLabel" linkSize="4" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="nivelCarreiraInput" linkSize="4" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="nivelCarreiraLabel" linkSize="4" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="dataNascimentoLabel" alignment="0" min="-2" pref="22" max="-2" attributes="0"/>
+                              <Component id="dataNascimentoInput" linkSize="4" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="FaixaEtariaLabel" linkSize="4" min="-2" max="-2" attributes="0"/>
+                              <Component id="faixaEtariaInput" linkSize="4" alignment="0" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="distritoNascimentoInput" linkSize="4" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="distritoNascimentoLabel" linkSize="4" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="provinciaNacimentoLabel" linkSize="4" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="localUsInput" linkSize="4" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="localUsLabel" linkSize="4" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="usAssistenciaInput" linkSize="4" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="usAssitenciaLabel" linkSize="4" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <Component id="provinciaNascimentoInput" linkSize="4" alignment="0" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace pref="30" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
@@ -569,7 +573,7 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="0" green="0" red="ff" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="O Nosso Maior Valor e a Vida"/>
+            <Property name="text" type="java.lang.String" value="O Nosso Maior Valor é a vida"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="recuarBTN">

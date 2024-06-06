@@ -85,7 +85,7 @@ public class ProduzirRelatorioPeriodico extends javax.swing.JFrame {
 
         hospital.setText("Nome do Hospital");
 
-        lema.setText("O nosso maior valor e a vida");
+        lema.setText("O nosso maior valor é a vida");
 
         sistema1.setText("Sistema de Informação e Monitoria da Saúde");
 

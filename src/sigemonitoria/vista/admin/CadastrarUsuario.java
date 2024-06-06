@@ -62,6 +62,7 @@ public class CadastrarUsuario extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Alterar Senha");
+        setResizable(false);
 
         esquerda.setBackground(new java.awt.Color(255, 255, 255));
         esquerda.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -77,7 +78,7 @@ public class CadastrarUsuario extends javax.swing.JFrame {
 
         hospital.setText("Nome do Hospital");
 
-        lema.setText("O nosso maior valor e a vida");
+        lema.setText("O nosso maior valor é a vida");
 
         sistema1.setText("Sistema de Informação e Monitoria da Saúde");
 

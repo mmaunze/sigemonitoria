@@ -65,6 +65,7 @@ public class AlterarSenha extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Alterar Senha");
+        setResizable(false);
 
         esquerda.setBackground(new java.awt.Color(255, 255, 255));
         esquerda.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -80,7 +81,7 @@ public class AlterarSenha extends javax.swing.JFrame {
 
         hospital.setText("Nome do Hospital");
 
-        lema.setText("O nosso maior valor e a vida");
+        lema.setText("O nosso maior valor é a vida");
 
         sistema1.setText("Sistema de Informação e Monitoria da Saúde");
 
@@ -243,7 +244,7 @@ public class AlterarSenha extends javax.swing.JFrame {
                             .addComponent(novaSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(senha, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(confirmarNovaSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(0, 47, Short.MAX_VALUE)))
                 .addContainerGap())
         );
 
@@ -282,7 +283,8 @@ public class AlterarSenha extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(esquerda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(direita, javax.swing.GroupLayout.DEFAULT_SIZE, 366, Short.MAX_VALUE))
+                .addComponent(direita, javax.swing.GroupLayout.PREFERRED_SIZE, 401, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

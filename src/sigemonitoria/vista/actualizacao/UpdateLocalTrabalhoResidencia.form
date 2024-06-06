@@ -28,11 +28,11 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
+                  <Group type="102" attributes="0">
                       <Component id="cabecalho" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      <EmptySpace min="0" pref="91" max="32767" attributes="0"/>
                   </Group>
-                  <Component id="cadastro" alignment="0" max="32767" attributes="0"/>
+                  <Component id="cadastro" max="32767" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -157,6 +157,16 @@
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="lema" min="-2" pref="251" max="-2" attributes="0"/>
                           <EmptySpace max="32767" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="gaurdarRascunhoBTN" alignment="0" max="32767" attributes="0"/>
+                              <Component id="recuarBTN" alignment="0" max="32767" attributes="0"/>
+                          </Group>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="avancarBTN" alignment="0" max="32767" attributes="0"/>
+                              <Component id="avancarBTN1" alignment="1" max="32767" attributes="0"/>
+                          </Group>
+                          <EmptySpace max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
@@ -175,23 +185,19 @@
                               </Group>
                               <Component id="username" alignment="0" max="32767" attributes="0"/>
                           </Group>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="distritoResidenciaLabel" linkSize="1" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="localUsLabel" linkSize="1" alignment="0" min="-2" pref="113" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="distritoResidenciaInput" linkSize="1" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
+                              <Component id="sectorTrabalhoInput" linkSize="1" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
+                          </Group>
                           <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="gaurdarRascunhoBTN" alignment="0" max="32767" attributes="0"/>
-                      <Component id="recuarBTN" alignment="0" max="32767" attributes="0"/>
-                      <Component id="distritoResidenciaLabel" alignment="0" max="32767" attributes="0"/>
-                      <Component id="localUsLabel" alignment="0" max="32767" attributes="0"/>
-                  </Group>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="avancarBTN" alignment="0" max="32767" attributes="0"/>
-                      <Component id="distritoResidenciaInput" alignment="0" max="32767" attributes="0"/>
-                      <Component id="avancarBTN1" alignment="1" max="32767" attributes="0"/>
-                      <Component id="sectorTrabalhoInput" alignment="0" max="32767" attributes="0"/>
-                  </Group>
-                  <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -315,7 +321,7 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="0" green="0" red="ff" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="O Nosso Maior Valor e a Vida"/>
+            <Property name="text" type="java.lang.String" value="O Nosso Maior Valor é a vida"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="recuarBTN">

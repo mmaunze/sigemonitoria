@@ -173,8 +173,6 @@ public class ControleSeguimento extends javax.swing.JFrame implements MetodosGer
                 .addGap(29, 29, 29))
         );
 
-        cadastro.setBackground(new java.awt.Color(255, 255, 255));
-
         enfermidadeTxt.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         enfermidadeTxt.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         enfermidadeTxt.setText("Enfermidade");
@@ -399,7 +397,7 @@ public class ControleSeguimento extends javax.swing.JFrame implements MetodosGer
         });
 
         lema.setForeground(new java.awt.Color(255, 0, 0));
-        lema.setText("O Nosso Maior Valor e a Vida");
+        lema.setText("O Nosso Maior Valor é a vida");
 
         javax.swing.GroupLayout cadastroLayout = new javax.swing.GroupLayout(cadastro);
         cadastro.setLayout(cadastroLayout);
@@ -479,7 +477,7 @@ public class ControleSeguimento extends javax.swing.JFrame implements MetodosGer
                         .addGroup(cadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(guardarBTN, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(avancarBTN, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 76, Short.MAX_VALUE))
         );
 
         cadastroLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {EspObservadoTxt, aonInput, aonTxt, apssInput, apssTxt, aspAnteriorTxt, consultaMedicaInput, consultaMedicaTxt, dataConsultaActualInput, dataConsultaActualTxt, dataConsultaAnteriorInput, dataConsultaAnteriorTxt, dataFalecimentoTxt, dataProximaConsultaInput, dataProximaConsultaTxt, diagnosticoInput, diagnosticoTxt, enfermidadeInput, enfermidadeTxt, espActualInput, espActualTxt, espAnteriorInput, espObservadoInput, rastreioInput, rastreioTxt, situacaoActualPacienteInput, situacaoActualPacienteTxt});
@@ -553,8 +551,10 @@ public class ControleSeguimento extends javax.swing.JFrame implements MetodosGer
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(cadastro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(cabecalho, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(cabecalho, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(cadastro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -885,7 +885,8 @@ public class ControleSeguimento extends javax.swing.JFrame implements MetodosGer
 
     private void gaurdarRascunhoBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gaurdarRascunhoBTNActionPerformed
 
-        String mensagem = "Para Aceder a Essa Funcionalidade \ndeve Fazer Upgrade do Seu Plano";
+        String mensagem = "Para aproveitar esta funcionalidade incrível, \nvocê pode fazer um upgrade do seu plano. \nContacte o desenvolvedor para mais detalhes";
+
         showMessageDialog(this, mensagem, "Funcionalidade Premium", ERROR_MESSAGE);
     }//GEN-LAST:event_gaurdarRascunhoBTNActionPerformed
 

@@ -4,6 +4,7 @@
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="0"/>
     <Property name="title" type="java.lang.String" value="Menu Principal"/>
+    <Property name="resizable" type="boolean" value="false"/>
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
@@ -314,7 +315,7 @@
         </Component>
         <Component class="javax.swing.JLabel" name="lema">
           <Properties>
-            <Property name="text" type="java.lang.String" value="O nosso maior valor e a vida"/>
+            <Property name="text" type="java.lang.String" value="O nosso maior valor é a vida"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="sistema1">

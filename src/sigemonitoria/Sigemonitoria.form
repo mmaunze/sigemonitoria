@@ -156,7 +156,7 @@
         </Component>
         <Component class="javax.swing.JLabel" name="lema">
           <Properties>
-            <Property name="text" type="java.lang.String" value="O nosso maior valor e a vida"/>
+            <Property name="text" type="java.lang.String" value="O nosso maior valor é a vida"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="sistema1">

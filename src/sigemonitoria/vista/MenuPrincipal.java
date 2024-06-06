@@ -74,6 +74,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Menu Principal");
+        setResizable(false);
 
         direita.setPreferredSize(new java.awt.Dimension(700, 400));
 
@@ -201,7 +202,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         hospital.setText("Nome do Hospital");
 
-        lema.setText("O nosso maior valor e a vida");
+        lema.setText("O nosso maior valor é a vida");
 
         sistema1.setText("Sistema de Informação e Monitoria da Saúde");
 
@@ -342,7 +343,8 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_produzirRelatorioBtnActionPerformed
 
     private void verDadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_verDadosActionPerformed
-        String mensagem = "Para Aceder a Essa Funcionalidade \ndeve Fazer Upgrade do Seu Plano";
+        String mensagem = "Para aproveitar esta funcionalidade incrível, \nvocê pode fazer um upgrade do seu plano. \nContacte o desenvolvedor para mais detalhes";
+
         showMessageDialog(this, mensagem, "Funcionalidade Premium", ERROR_MESSAGE);
     }//GEN-LAST:event_verDadosActionPerformed
 

@@ -172,8 +172,6 @@ public class UpdateControleSeguimento extends javax.swing.JFrame implements Meto
                 .addGap(29, 29, 29))
         );
 
-        cadastro.setBackground(new java.awt.Color(255, 255, 255));
-
         enfermidadeTxt.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         enfermidadeTxt.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         enfermidadeTxt.setText("Enfermidade");
@@ -398,7 +396,7 @@ public class UpdateControleSeguimento extends javax.swing.JFrame implements Meto
         });
 
         lema.setForeground(new java.awt.Color(255, 0, 0));
-        lema.setText("O Nosso Maior Valor e a Vida");
+        lema.setText("O Nosso Maior Valor é a vida");
 
         javax.swing.GroupLayout cadastroLayout = new javax.swing.GroupLayout(cadastro);
         cadastro.setLayout(cadastroLayout);
@@ -478,7 +476,7 @@ public class UpdateControleSeguimento extends javax.swing.JFrame implements Meto
                         .addGroup(cadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(guardarBTN, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(avancarBTN, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 65, Short.MAX_VALUE))
         );
 
         cadastroLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {EspObservadoTxt, aonInput, aonTxt, apssInput, apssTxt, aspAnteriorTxt, consultaMedicaInput, consultaMedicaTxt, dataConsultaActualInput, dataConsultaActualTxt, dataConsultaAnteriorInput, dataConsultaAnteriorTxt, dataFalecimentoTxt, dataProximaConsultaInput, dataProximaConsultaTxt, diagnosticoInput, diagnosticoTxt, enfermidadeInput, enfermidadeTxt, espActualInput, espActualTxt, espAnteriorInput, espObservadoInput, rastreioInput, rastreioTxt, situacaoActualPacienteInput, situacaoActualPacienteTxt});
@@ -884,7 +882,8 @@ public class UpdateControleSeguimento extends javax.swing.JFrame implements Meto
 
     private void gaurdarRascunhoBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gaurdarRascunhoBTNActionPerformed
 
-        String mensagem = "Para Aceder a Essa Funcionalidade \ndeve Fazer Upgrade do Seu Plano";
+        String mensagem = "Para aproveitar esta funcionalidade incrível, \nvocê pode fazer um upgrade do seu plano. \nContacte o desenvolvedor para mais detalhes";
+
         showMessageDialog(this, mensagem, "Funcionalidade Premium", ERROR_MESSAGE);
     }//GEN-LAST:event_gaurdarRascunhoBTNActionPerformed
 
