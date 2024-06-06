@@ -60,6 +60,7 @@ public class CadastrarUsuario extends javax.swing.JFrame {
         jComboBox2 = new javax.swing.JComboBox<>();
         voltarBtn = new javax.swing.JButton();
 
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Alterar Senha");
 
         esquerda.setBackground(new java.awt.Color(255, 255, 255));

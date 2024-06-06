@@ -1,53 +1,130 @@
-package sigemonitoria.vista.cadastro;
+package sigemonitoria.vista.actualizacao;
 
 import static java.awt.EventQueue.invokeLater;
 import java.text.ParseException;
+import java.util.List;
 import java.util.logging.Level;
-import static java.util.logging.Level.SEVERE;
 import java.util.logging.Logger;
-import static java.util.logging.Logger.getLogger;
-import javax.persistence.EntityManagerFactory;
-import static javax.persistence.Persistence.createEntityManagerFactory;
-import javax.swing.JOptionPane;
 import static javax.swing.JOptionPane.ERROR_MESSAGE;
 import static javax.swing.JOptionPane.showMessageDialog;
 import javax.swing.UIManager;
-import static javax.swing.UIManager.setLookAndFeel;
 import javax.swing.UnsupportedLookAndFeelException;
 import sigemonitoria.MetodosGerais;
-import sigemonitoria.controller.CasoJpaController;
-import sigemonitoria.controller.DoenteJpaController;
 import sigemonitoria.modelo.Caso;
 import sigemonitoria.modelo.Doente;
 import sigemonitoria.modelo.Utilizador;
 import sigemonitoria.vista.MenuPrincipal;
-import sigemonitoria.vista.actualizacao.UpdateInformacaoBasicaPaciente;
 
 /**
  *
  * @author Meldo Maunze
  */
-public class InformacaoBasicaPaciente extends javax.swing.JFrame implements MetodosGerais {
+public class UpdateInformacaoBasicaPaciente extends javax.swing.JFrame implements MetodosGerais {
 
     Caso caso = new Caso();
-    Doente doente = new Doente();
+    Doente doente;
     Utilizador usuario;
-    private LocalTrabalhoResidencia frame2 = null;
+    private UpdateLocalTrabalhoResidencia frame2 = null;
 
+    boolean nidPreenchido = false;
+    boolean dataRegistoCasoPreencido = false;
+    boolean localDaUsPreenchido = false;
+    boolean usDeAssistenciaPreenchido = false;
+    boolean distritoNascimentoPreenchido = false;
+    boolean provinciaNascimentoPreenchido = false;
+    boolean dataNascimentoPreencido = false;
+    boolean categoriaPreenchido = false;
+    boolean carreiraPreenchido = false;
+    boolean nomePreenchido = false;
+    boolean nivelCarreiraPreenchido = false;
+    boolean sexoPreencido = false;
     /**
-     * Creates new form InformacaoBasicaPaciente
      *
-     * @param usuario
+     * @param usuario the value of usuario
+     * @param paciente the value of paciente
      */
-    public InformacaoBasicaPaciente(Utilizador usuario) {
+    public UpdateInformacaoBasicaPaciente(Utilizador usuario, Doente paciente) {
         initComponents();
         this.usuario = usuario;
+        this.doente = paciente;
         this.username.setText(usuario.getNomeCompleto());
         this.hospital.setText(usuario.getHospital().getNomeHospital());
+        if (paciente != null) {
+            List<Caso> casos = paciente.getCasoList();
+            var ultimoCaso = casos.get(casos.size() - 1);
+            this.caso = ultimoCaso;
 
+            nidInput.setText(paciente.getNid());
+            nidInput.setEnabled(true);
+
+            habilitarCampo(dataRegistoCasoInput);
+            this.dataRegistoCasoInput.setText(converterDataParaString(caso.getDataRegistoCaso()));
+            dataRegistoCasoPreencido = true;
+
+            habilitarCampo(nomePacienteInput);
+            this.nomePacienteInput.setText(paciente.getNome());
+            nomePreenchido = true;
+
+            habilitarSelect(sexoInput);
+            sexoInput.setSelectedItem(paciente.getSexo());
+            sexoPreencido = true;
+
+            habilitarCampo(carreiraInput);
+            this.carreiraInput.setText(paciente.getCarreira());
+            carreiraPreenchido = true;
+
+            habilitarSelect(nivelCarreiraInput);
+            nivelCarreiraInput.setSelectedItem(paciente.getNivelCarreira());
+            nivelCarreiraPreenchido = true;
+
+            habilitarCampo(categoriaInput);
+            categoriaInput.setText(paciente.getCategoria());
+            categoriaPreenchido = true;
+
+            habilitarCampo(dataNascimentoInput);
+            dataNascimentoInput.setText(converterDataParaString(paciente.getDataNascimento()));
+            dataNascimentoPreencido = true;
+
+            idadeInput.setText(String.valueOf(paciente.getIdade()));
+            idadeInput.setEnabled(true);
+
+            faixaEtariaInput.setText(paciente.getFaixaEtaria());
+            faixaEtariaInput.setEnabled(true);
+
+            habilitarSelect(provinciaNascimentoInput);
+            provinciaNascimentoInput.setSelectedItem(paciente.getProvinciaNascimento());
+            provinciaNascimentoPreenchido = true;
+
+            habilitarCampo(distritoNascimentoInput);
+            distritoNascimentoInput.setText(paciente.getDistritoNascimento());
+            distritoNascimentoPreenchido = true;
+
+            habilitarCampo(usAssistenciaInput);
+            usAssistenciaInput.setText(caso.getUsDeAssistencia());
+            usDeAssistenciaPreenchido = true;
+
+            habilitarCampo(localUsInput);
+            localUsInput.setText(caso.getUsDeAssistencia());
+            localDaUsPreenchido = true;
+
+            nidPreenchido = true;
+            
+            avancarBTN.setEnabled(true);
+            avancarBTN.requestFocus();
+
+
+        } else {
+            String mensagem = "Nao foi fornecido nenhum NID\n, portanto,\n nao ha dados para actualizar,\n Redireccionando ao Menu";
+            showMessageDialog(this, mensagem, "NID vazio", ERROR_MESSAGE);
+            var escolherAccao = new MenuPrincipal(usuario);
+            escolherAccao.setLocationRelativeTo(null);
+            escolherAccao.setVisible(true);
+            this.dispose();
+
+        }
     }
 
-    private InformacaoBasicaPaciente() {
+    private UpdateInformacaoBasicaPaciente() {
         initComponents();
     }
 
@@ -103,7 +180,7 @@ public class InformacaoBasicaPaciente extends javax.swing.JFrame implements Meto
         cancelarBTN = new javax.swing.JButton();
         username = new javax.swing.JTextField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Informacoes Basicas Do Paciente");
         setResizable(false);
 
@@ -516,18 +593,7 @@ public class InformacaoBasicaPaciente extends javax.swing.JFrame implements Meto
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    boolean nidPreenchido = false;
-    boolean dataRegistoCasoPreencido = false;
-    boolean localDaUsPreenchido = false;
-    boolean usDeAssistenciaPreenchido = false;
-    boolean distritoNascimentoPreenchido = false;
-    boolean provinciaNascimentoPreenchido = false;
-    boolean dataNascimentoPreencido = false;
-    boolean categoriaPreenchido = false;
-    boolean carreiraPreenchido = false;
-    boolean nomePreenchido = false;
-    boolean nivelCarreiraPreenchido = false;
-    boolean sexoPreencido = false;
+ 
 
     private void localUsInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_localUsInputActionPerformed
         var localUsValue = localUsInput.getText().trim();
@@ -555,12 +621,11 @@ public class InformacaoBasicaPaciente extends javax.swing.JFrame implements Meto
                 try {
                     doente.setDataNascimento(converterStringParaData(dataTexto));
                 } catch (ParseException ex) {
-                    Logger.getLogger(InformacaoBasicaPaciente.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(UpdateInformacaoBasicaPaciente.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 idadeInput.setText(Integer.toString(calcularIdade(dataTexto)));
                 doente.setIdade((short) calcularIdade(dataTexto));
                 faixaEtariaInput.setText(calcularFaixaEtaria(calcularIdade(dataTexto)));
-
                 idadeInput.setEnabled(true);
                 faixaEtariaInput.setEnabled(true);
                 doente.setFaixaEtaria(calcularFaixaEtaria(calcularIdade(dataTexto)));
@@ -589,28 +654,11 @@ public class InformacaoBasicaPaciente extends javax.swing.JFrame implements Meto
 
     private void nidInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nidInputActionPerformed
         var nidValue = nidInput.getText().trim();
-        EntityManagerFactory emf = createEntityManagerFactory("sigemonitoriaPU");
-        DoenteJpaController doentes = new DoenteJpaController(emf);
-
         if (nidValue.matches("\\d+")) {
             if (nidValue.length() == 5) {
                 nidPreenchido = true;
                 doente.setNid(nidValue);
                 habilitarCampo(nomePacienteInput);
-                if (doentes.findDoente(nidValue) != null) {
-                    var paciente = doentes.findDoente(nidValue);
-                    JOptionPane.showMessageDialog(this, "\n Nome: " + paciente.getNome() + "\nNID: " + paciente.getNid() + "\n Idade: " + paciente.getIdade(), "Doente Encontrado", JOptionPane.INFORMATION_MESSAGE);
-                    JOptionPane.showMessageDialog(this, "Como o doente foi encontrado, \nsera redirrecionado a tela de actualizacao", "Redireccionando", JOptionPane.INFORMATION_MESSAGE);
-                    this.dispose();
-                    var tela1 = new UpdateInformacaoBasicaPaciente(usuario, paciente);
-                    try {
-                        setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
-                    } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException ex) {
-                        getLogger(MenuPrincipal.class.getName()).log(SEVERE, null, ex);
-                    }
-                    tela1.setLocationRelativeTo(null);
-                    tela1.setVisible(true);
-                }
             } else {
                 showMessageDialog(this, "O NID do Paciente deve ter exatamente 5 dígitos.", "5 Digitos Obrigatorios", ERROR_MESSAGE);
                 nidInput.requestFocus();
@@ -669,10 +717,8 @@ public class InformacaoBasicaPaciente extends javax.swing.JFrame implements Meto
                 habilitarCampo(nidInput);
                 try {
                     caso.setDataRegistoCaso(converterStringParaData(dataTexto));
-
                 } catch (ParseException ex) {
-                    Logger.getLogger(InformacaoBasicaPaciente.class
-                            .getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(UpdateInformacaoBasicaPaciente.class.getName()).log(Level.SEVERE, null, ex);
                 }
             } else {
                 showMessageDialog(this, "Formato de data inválido.\n Use dd/MM/aaaa.", "Data Invalida", ERROR_MESSAGE);
@@ -731,7 +777,7 @@ public class InformacaoBasicaPaciente extends javax.swing.JFrame implements Meto
         var escolherAccao = new MenuPrincipal(usuario);
         escolherAccao.setLocationRelativeTo(null);
         escolherAccao.setVisible(true);
-        this.dispose();
+       this.dispose();
     }//GEN-LAST:event_cancelarBTNActionPerformed
 
     private void gaurdarRascunhoBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gaurdarRascunhoBTNActionPerformed
@@ -842,18 +888,15 @@ public class InformacaoBasicaPaciente extends javax.swing.JFrame implements Meto
                 && sexoPreencido) {
 
             if (frame2 == null) {
-                frame2 = new LocalTrabalhoResidencia(this, doente, caso, usuario);
-
+                frame2 = new UpdateLocalTrabalhoResidencia(this, doente, caso, usuario);
             }
             this.setVisible(false);
 
             try {
                 // Configurações adicionais do frame2, se necessário
                 UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
-
             } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException ex) {
-                Logger.getLogger(InformacaoBasicaPaciente.class
-                        .getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(UpdateInformacaoBasicaPaciente.class.getName()).log(Level.SEVERE, null, ex);
             }
             frame2.setLocationRelativeTo(null);
             frame2.setVisible(true);
@@ -881,16 +924,14 @@ public class InformacaoBasicaPaciente extends javax.swing.JFrame implements Meto
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
-
                 }
             }
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(InformacaoBasicaPaciente.class
-                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(UpdateInformacaoBasicaPaciente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
 
         invokeLater(() -> {
-            new InformacaoBasicaPaciente().setVisible(true);
+            new UpdateInformacaoBasicaPaciente().setVisible(true);
         });
 
     }

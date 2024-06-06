@@ -6,6 +6,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.NoResultException;
 import static javax.persistence.Persistence.createEntityManagerFactory;
 import static javax.swing.JOptionPane.ERROR_MESSAGE;
+import static javax.swing.JOptionPane.INFORMATION_MESSAGE;
 import static javax.swing.JOptionPane.showMessageDialog;
 import sigemonitoria.modelo.Utilizador;
 import sigemonitoria.vista.MenuPrincipal;
@@ -52,6 +53,7 @@ public class Sigemonitoria extends javax.swing.JFrame {
         senha = new javax.swing.JPasswordField();
         loginBTN = new javax.swing.JButton();
         autenticacao = new javax.swing.JLabel();
+        fecharAPP = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Autenticação");
@@ -151,10 +153,18 @@ public class Sigemonitoria extends javax.swing.JFrame {
             }
         });
 
+        loginBTN.setBackground(new java.awt.Color(102, 255, 0));
         loginBTN.setText("Entrar");
         loginBTN.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 loginBTNActionPerformed(evt);
+            }
+        });
+
+        fecharAPP.setText("Fechar a Aplicacao");
+        fecharAPP.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                fecharAPPActionPerformed(evt);
             }
         });
 
@@ -165,22 +175,25 @@ public class Sigemonitoria extends javax.swing.JFrame {
             .addGroup(direitaLayout.createSequentialGroup()
                 .addGroup(direitaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(direitaLayout.createSequentialGroup()
+                        .addGap(89, 89, 89)
+                        .addComponent(autenticacao))
+                    .addGroup(direitaLayout.createSequentialGroup()
                         .addGap(35, 35, 35)
                         .addGroup(direitaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(senhaLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(usernameLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(direitaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(loginBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(senha, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(username, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(direitaLayout.createSequentialGroup()
-                        .addGap(89, 89, 89)
-                        .addComponent(autenticacao)))
+                            .addComponent(loginBTN, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(direitaLayout.createSequentialGroup()
+                                .addGroup(direitaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(senhaLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(usernameLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(direitaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(senha, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(username, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(fecharAPP, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        direitaLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {loginBTN, senha, username});
+        direitaLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {senha, username});
 
         direitaLayout.setVerticalGroup(
             direitaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -197,6 +210,8 @@ public class Sigemonitoria extends javax.swing.JFrame {
                     .addComponent(senha, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(loginBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(fecharAPP)
                 .addContainerGap())
         );
 
@@ -259,11 +274,11 @@ public class Sigemonitoria extends javax.swing.JFrame {
             try {
                 var usuario = query.getSingleResult();
                 if (usuario != null) {
-                    showMessageDialog(this, " Bem-vindo! " + usuario.getNomeCompleto());
+                    showMessageDialog(this, " Bem-vindo! \n" + usuario.getNomeCompleto(), "Login Bem Sucedido", INFORMATION_MESSAGE);
                     var escolherAccao = new MenuPrincipal(usuario);
                     escolherAccao.setLocationRelativeTo(null);
                     escolherAccao.setVisible(true);
-                    this.setVisible(false);
+                    this.dispose();
                 } else {
                     tentativasIncorretas++;
                     showMessageDialog(this, "Senha incorreta ou usuário não encontrado. Tente novamente \nTentativas: " + tentativasIncorretas + " de 3.");
@@ -286,6 +301,11 @@ public class Sigemonitoria extends javax.swing.JFrame {
             autenticacao.setText("Login Bloqueado Por Atingit O numero Maimo de Tentativas");
         }
     }//GEN-LAST:event_loginBTNActionPerformed
+
+    private void fecharAPPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fecharAPPActionPerformed
+        this.dispose();
+
+    }//GEN-LAST:event_fecharAPPActionPerformed
 
     /**
      * @param args the command line arguments
@@ -317,6 +337,7 @@ public class Sigemonitoria extends javax.swing.JFrame {
     private javax.swing.JPanel direita;
     private javax.swing.JLabel emblema;
     private javax.swing.JPanel esquerda;
+    private javax.swing.JButton fecharAPP;
     private javax.swing.JLabel hospital;
     private javax.swing.JLabel lema;
     private javax.swing.JButton loginBTN;

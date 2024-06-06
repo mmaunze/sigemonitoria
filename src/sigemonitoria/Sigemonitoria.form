@@ -183,22 +183,27 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" attributes="0">
-                          <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="senhaLabel" max="32767" attributes="0"/>
-                              <Component id="usernameLabel" max="32767" attributes="0"/>
-                          </Group>
-                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="loginBTN" linkSize="4" min="-2" pref="133" max="-2" attributes="0"/>
-                              <Component id="senha" linkSize="4" min="-2" pref="133" max="-2" attributes="0"/>
-                              <Component id="username" linkSize="4" min="-2" pref="113" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="89" max="-2" attributes="0"/>
                           <Component id="autenticacao" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="loginBTN" alignment="0" max="32767" attributes="0"/>
+                              <Group type="102" attributes="0">
+                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                      <Component id="senhaLabel" max="32767" attributes="0"/>
+                                      <Component id="usernameLabel" max="32767" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="senha" linkSize="4" min="-2" pref="133" max="-2" attributes="0"/>
+                                      <Component id="username" linkSize="4" min="-2" pref="113" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                              <Component id="fecharAPP" alignment="0" max="32767" attributes="0"/>
+                          </Group>
                       </Group>
                   </Group>
                   <EmptySpace max="32767" attributes="0"/>
@@ -222,6 +227,8 @@
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="loginBTN" linkSize="3" min="-2" pref="23" max="-2" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Component id="fecharAPP" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -250,6 +257,9 @@
         </Component>
         <Component class="javax.swing.JButton" name="loginBTN">
           <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="0" green="ff" red="66" type="rgb"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Entrar"/>
           </Properties>
           <Events>
@@ -257,6 +267,14 @@
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="autenticacao">
+        </Component>
+        <Component class="javax.swing.JButton" name="fecharAPP">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Fechar a Aplicacao"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="fecharAPPActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

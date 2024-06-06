@@ -13,13 +13,16 @@
             <file>file:/F:/PROJECTOS/JAVA/Java%20DESKTOP/sigemonitoria/src/sigemonitoria/vista/cadastro/LocalTrabalhoResidencia.java</file>
             <file>file:/F:/PROJECTOS/JAVA/Java%20DESKTOP/sigemonitoria/src/sigemonitoria/controller/CasoJpaController.java</file>
             <file>file:/F:/PROJECTOS/JAVA/Java%20DESKTOP/sigemonitoria/src/sigemonitoria/Sigemonitoria.java</file>
+            <file>file:/F:/PROJECTOS/JAVA/Java%20DESKTOP/sigemonitoria/src/sigemonitoria/vista/actualizacao/UpdateControleSeguimento.java</file>
             <file>file:/F:/PROJECTOS/JAVA/Java%20DESKTOP/sigemonitoria/src/sigemonitoria/vista/dados/ProduzirRelatorioPeriodico.java</file>
             <file>file:/F:/PROJECTOS/JAVA/Java%20DESKTOP/sigemonitoria/src/sigemonitoria/vista/conta/AlterarSenha.java</file>
             <file>file:/F:/PROJECTOS/JAVA/Java%20DESKTOP/sigemonitoria/src/sigemonitoria/modelo/Caso.java</file>
             <file>file:/F:/PROJECTOS/JAVA/Java%20DESKTOP/sigemonitoria/src/sigemonitoria/MetodosGerais.java</file>
+            <file>file:/F:/PROJECTOS/JAVA/Java%20DESKTOP/sigemonitoria/src/sigemonitoria/vista/actualizacao/UpdateInformacaoBasicaPaciente.java</file>
             <file>file:/F:/PROJECTOS/JAVA/Java%20DESKTOP/sigemonitoria/src/sigemonitoria/controller/GeradorPDF.java</file>
             <file>file:/F:/PROJECTOS/JAVA/Java%20DESKTOP/sigemonitoria/src/sigemonitoria/vista/MenuPrincipal.java</file>
             <file>file:/F:/PROJECTOS/JAVA/Java%20DESKTOP/sigemonitoria/src/sigemonitoria/modelo/Hospital.java</file>
+            <file>file:/F:/PROJECTOS/JAVA/Java%20DESKTOP/sigemonitoria/src/sigemonitoria/vista/actualizacao/UpdateLocalTrabalhoResidencia.java</file>
         </group>
     </open-files>
 </project-private>

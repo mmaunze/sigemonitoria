@@ -67,6 +67,7 @@ public class ProduzirRelatorioPeriodico extends javax.swing.JFrame {
         terminarSessao = new javax.swing.JButton();
         voltarBtn = new javax.swing.JButton();
 
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Produzir Relatorio Periodico");
         setResizable(false);
 
@@ -310,7 +311,7 @@ public class ProduzirRelatorioPeriodico extends javax.swing.JFrame {
         var inicio = new Sigemonitoria();
         inicio.setLocationRelativeTo(null);
         inicio.setVisible(true);
-        this.setVisible(false);
+        this.dispose();
 
     }//GEN-LAST:event_terminarSessaoActionPerformed
 

@@ -1,18 +1,14 @@
-package sigemonitoria.vista.cadastro;
+package sigemonitoria.vista.actualizacao;
 
 import static java.awt.EventQueue.invokeLater;
+import java.util.List;
 import static java.util.logging.Level.SEVERE;
 import static java.util.logging.Logger.getLogger;
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import static javax.persistence.Persistence.createEntityManagerFactory;
 import static javax.swing.JOptionPane.ERROR_MESSAGE;
 import static javax.swing.JOptionPane.showMessageDialog;
 import static javax.swing.UIManager.setLookAndFeel;
 import javax.swing.UnsupportedLookAndFeelException;
 import sigemonitoria.MetodosGerais;
-import sigemonitoria.controller.CasoJpaController;
-import sigemonitoria.controller.DoenteJpaController;
 import sigemonitoria.modelo.Caso;
 import sigemonitoria.modelo.Doente;
 import sigemonitoria.modelo.Utilizador;
@@ -22,15 +18,21 @@ import sigemonitoria.vista.MenuPrincipal;
  *
  * @author Meldo Maunze
  */
-public class LocalTrabalhoResidencia extends javax.swing.JFrame implements MetodosGerais {
-        
-    Caso caso ;
-  
+public class UpdateLocalTrabalhoResidencia extends javax.swing.JFrame implements MetodosGerais {
+
+    Caso caso;
+
     Doente doente;
     Utilizador usuario;
-    
-    private InformacaoBasicaPaciente frame1;
-    private ControleSeguimento frame3 = null;
+
+    private UpdateInformacaoBasicaPaciente frame1;
+    private UpdateControleSeguimento frame3 = null;
+
+    boolean estabelecimentoSaudePreenchido = false;
+    boolean provinciaResidenciaPreenchido = false;
+    boolean distritoResidenciaPreenchido = false;
+    boolean moradaPreenchido = false;
+    boolean sectorTrabalhoPreenchido = false;
 
     /**
      *
@@ -39,7 +41,7 @@ public class LocalTrabalhoResidencia extends javax.swing.JFrame implements Metod
      * @param caso the value of caso
      * @param usuario the value of usuario
      */
-    public LocalTrabalhoResidencia(InformacaoBasicaPaciente frame1, Doente doente, Caso caso, Utilizador usuario) {
+    public UpdateLocalTrabalhoResidencia(UpdateInformacaoBasicaPaciente frame1, Doente doente, Caso caso, Utilizador usuario) {
         initComponents();
         this.frame1 = frame1;
         this.usuario = usuario;
@@ -47,10 +49,44 @@ public class LocalTrabalhoResidencia extends javax.swing.JFrame implements Metod
         this.username.setText(usuario.getNomeCompleto());
         this.hospital.setText(usuario.getHospital().getNomeHospital());
         this.caso = caso;
+        if (doente != null && caso != null) {
+
+            habilitarSelect(provinciaResidenciaInput);
+            provinciaResidenciaInput.setSelectedItem(doente.getProvinciaResidencia());
+            provinciaResidenciaPreenchido = true;
+
+            habilitarCampo(distritoResidenciaInput);
+            this.distritoResidenciaInput.setText(doente.getDistritoResidencia());
+            distritoResidenciaPreenchido = true;
+
+            habilitarCampo(estabelecimentoSaudeInput);
+            estabelecimentoSaudeInput.setText(caso.getEstabelecimentoSaude());
+            estabelecimentoSaudePreenchido = true;
+
+            habilitarSelect(sectorTrabalhoInput);
+            sectorTrabalhoInput.setSelectedItem(doente.getSectorTrabalho());
+            sectorTrabalhoPreenchido = true;
+
+            habilitarCampo(moradaInput);
+            moradaInput.setText(doente.getMorada());
+            moradaPreenchido = true;
+            
+            avancarBTN.setEnabled(true);
+            avancarBTN.requestFocus();
+
+        } else {
+            String mensagem = "Nao foi fornecido nenhum NID\n, portanto,\n nao ha dados para actualizar,\n Redireccionando ao Menu";
+            showMessageDialog(this, mensagem, "NID vazio", ERROR_MESSAGE);
+            var escolherAccao = new MenuPrincipal(usuario);
+            escolherAccao.setLocationRelativeTo(null);
+            escolherAccao.setVisible(true);
+            this.dispose();
+
+        }
 
     }
-    
-    private LocalTrabalhoResidencia() {
+
+    private UpdateLocalTrabalhoResidencia() {
         initComponents();
     }
 
@@ -344,12 +380,7 @@ public class LocalTrabalhoResidencia extends javax.swing.JFrame implements Metod
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    boolean estabelecimentoSaudePreenchido = false;
-    boolean provinciaResidenciaPreenchido = false;
-    boolean distritoResidenciaPreenchido = false;
-    boolean moradaPreenchido = false;
-    boolean sectorTrabalhoPreenchido = false;
-    
+
     private void estabelecimentoSaudeInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_estabelecimentoSaudeInputActionPerformed
         var estabelecimentoSaudeValue = estabelecimentoSaudeInput.getText().trim();
         if (estabelecimentoSaudeValue != null && !estabelecimentoSaudeValue.trim().isEmpty()) {
@@ -418,7 +449,7 @@ public class LocalTrabalhoResidencia extends javax.swing.JFrame implements Metod
     }//GEN-LAST:event_distritoResidenciaInputActionPerformed
 
     private void gaurdarRascunhoBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gaurdarRascunhoBTNActionPerformed
-        
+
         String mensagem = "Para Aceder a Essa Funcionalidade \ndeve Fazer Upgrade do Seu Plano";
         showMessageDialog(this, mensagem, "Funcionalidade Premium", ERROR_MESSAGE);
     }//GEN-LAST:event_gaurdarRascunhoBTNActionPerformed
@@ -428,7 +459,7 @@ public class LocalTrabalhoResidencia extends javax.swing.JFrame implements Metod
         var escolherAccao = new MenuPrincipal(usuario);
         escolherAccao.setLocationRelativeTo(null);
         escolherAccao.setVisible(true);
-        this.dispose();
+      this.dispose();
     }//GEN-LAST:event_avancarBTN1ActionPerformed
 
     private void moradaInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_moradaInputActionPerformed
@@ -439,7 +470,7 @@ public class LocalTrabalhoResidencia extends javax.swing.JFrame implements Metod
                 avancarBTN.requestFocus();
                 avancarBTN.setEnabled(true);
                 doente.setMorada(moradaValue);
-                
+
             } else {
                 showMessageDialog(this, "A morada deve conter apenas letras.", "Entrada inválida", ERROR_MESSAGE);
                 moradaInput.requestFocus();
@@ -447,7 +478,7 @@ public class LocalTrabalhoResidencia extends javax.swing.JFrame implements Metod
         } else {
             showMessageDialog(this, "Deve Preencher o Campo antes de avancar.", "Morada Vazia", ERROR_MESSAGE);
             moradaInput.requestFocus();
-            
+
         }
     }//GEN-LAST:event_moradaInputActionPerformed
 
@@ -476,12 +507,12 @@ public class LocalTrabalhoResidencia extends javax.swing.JFrame implements Metod
             try {
                 setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
             } catch (UnsupportedLookAndFeelException ex) {
-                getLogger(LocalTrabalhoResidencia.class.getName()).log(SEVERE, null, ex);
+                getLogger(UpdateLocalTrabalhoResidencia.class.getName()).log(SEVERE, null, ex);
             }
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException ex) {
-            getLogger(LocalTrabalhoResidencia.class.getName()).log(SEVERE, null, ex);
+            getLogger(UpdateLocalTrabalhoResidencia.class.getName()).log(SEVERE, null, ex);
         }
-        
+
         frame1.setLocationRelativeTo(null);
         frame1.setVisible(true);
         this.setVisible(false);
@@ -494,17 +525,17 @@ public class LocalTrabalhoResidencia extends javax.swing.JFrame implements Metod
                 && sectorTrabalhoPreenchido
                 && moradaPreenchido) {
             if (frame3 == null) {
-                frame3 = new ControleSeguimento(this, doente, caso, usuario);
+                frame3 = new UpdateControleSeguimento(this, doente, caso, usuario);
             }
             this.setVisible(false);
             frame3.setVisible(true);
-            
+
             try {
                 setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
             } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException ex) {
-                getLogger(LocalTrabalhoResidencia.class.getName()).log(SEVERE, null, ex);
+                getLogger(UpdateLocalTrabalhoResidencia.class.getName()).log(SEVERE, null, ex);
             }
-            
+
             frame3.setLocationRelativeTo(null);
             frame3.setVisible(true);
         } else {
@@ -529,13 +560,16 @@ public class LocalTrabalhoResidencia extends javax.swing.JFrame implements Metod
                 }
             }
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(LocalTrabalhoResidencia.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(UpdateLocalTrabalhoResidencia.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
 
         //</editor-fold>
         invokeLater(() -> {
-            new LocalTrabalhoResidencia().setVisible(true);
+            new UpdateLocalTrabalhoResidencia().setVisible(true);
         });
     }
 

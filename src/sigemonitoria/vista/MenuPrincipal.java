@@ -59,6 +59,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         produzirRelatorioBtn = new javax.swing.JButton();
         verDados = new javax.swing.JButton();
         terminarSessao = new javax.swing.JButton();
+        fecharAPP = new javax.swing.JButton();
         esquerda = new javax.swing.JPanel();
         emblema = new javax.swing.JLabel();
         republica = new javax.swing.JLabel();
@@ -71,6 +72,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         usernameTXT = new javax.swing.JTextField();
         usuarioLabel = new javax.swing.JLabel();
 
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Menu Principal");
 
         direita.setPreferredSize(new java.awt.Dimension(700, 400));
@@ -96,6 +98,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
             }
         });
 
+        alterarSenha.setBackground(new java.awt.Color(255, 153, 0));
         alterarSenha.setText("Alterar a Minha Senha");
         alterarSenha.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -117,6 +120,8 @@ public class MenuPrincipal extends javax.swing.JFrame {
             }
         });
 
+        terminarSessao.setBackground(new java.awt.Color(255, 0, 0));
+        terminarSessao.setForeground(new java.awt.Color(255, 255, 255));
         terminarSessao.setText("Terminar Sessao");
         terminarSessao.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -124,43 +129,60 @@ public class MenuPrincipal extends javax.swing.JFrame {
             }
         });
 
+        fecharAPP.setBackground(new java.awt.Color(204, 255, 255));
+        fecharAPP.setText("Fechar a Aplicacao");
+        fecharAPP.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                fecharAPPActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout direitaLayout = new javax.swing.GroupLayout(direita);
         direita.setLayout(direitaLayout);
         direitaLayout.setHorizontalGroup(
             direitaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, direitaLayout.createSequentialGroup()
-                .addContainerGap(54, Short.MAX_VALUE)
+            .addGroup(direitaLayout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(direitaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(terminarSessao)
-                    .addComponent(criarUsuarioBtn)
-                    .addComponent(alterarSenha)
-                    .addComponent(produzirRelatorioBtn)
-                    .addComponent(actualizarBtn)
-                    .addComponent(verDados)
-                    .addComponent(inserirBtn))
-                .addGap(37, 37, 37))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, direitaLayout.createSequentialGroup()
+                        .addGroup(direitaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(direitaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(verDados)
+                                .addComponent(produzirRelatorioBtn, javax.swing.GroupLayout.Alignment.TRAILING))
+                            .addComponent(alterarSenha))
+                        .addGap(18, 18, 18)
+                        .addGroup(direitaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(actualizarBtn)
+                            .addComponent(inserirBtn)
+                            .addComponent(criarUsuarioBtn))
+                        .addGap(0, 28, Short.MAX_VALUE))
+                    .addComponent(terminarSessao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(fecharAPP, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
-        direitaLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {actualizarBtn, alterarSenha, criarUsuarioBtn, inserirBtn, produzirRelatorioBtn, terminarSessao, verDados});
+        direitaLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {actualizarBtn, alterarSenha, criarUsuarioBtn, inserirBtn, produzirRelatorioBtn, verDados});
 
         direitaLayout.setVerticalGroup(
             direitaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, direitaLayout.createSequentialGroup()
-                .addContainerGap(31, Short.MAX_VALUE)
-                .addComponent(verDados)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(inserirBtn)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(actualizarBtn)
-                .addGap(7, 7, 7)
-                .addComponent(produzirRelatorioBtn)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(alterarSenha)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(criarUsuarioBtn)
-                .addGap(56, 56, 56)
+                .addContainerGap(60, Short.MAX_VALUE)
+                .addGroup(direitaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(inserirBtn)
+                    .addComponent(verDados))
+                .addGap(28, 28, 28)
+                .addGroup(direitaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(produzirRelatorioBtn)
+                    .addComponent(actualizarBtn))
+                .addGap(43, 43, 43)
+                .addGroup(direitaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(criarUsuarioBtn)
+                    .addComponent(alterarSenha))
+                .addGap(32, 32, 32)
                 .addComponent(terminarSessao)
-                .addGap(24, 24, 24))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(fecharAPP)
+                .addGap(13, 13, 13))
         );
 
         direitaLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {actualizarBtn, alterarSenha, criarUsuarioBtn, inserirBtn, produzirRelatorioBtn, terminarSessao, verDados});
@@ -265,7 +287,8 @@ public class MenuPrincipal extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(esquerda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(direita, javax.swing.GroupLayout.DEFAULT_SIZE, 268, Short.MAX_VALUE))
+                .addComponent(direita, javax.swing.GroupLayout.PREFERRED_SIZE, 412, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -293,14 +316,14 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
     private void actualizarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_actualizarBtnActionPerformed
 
-
+     this.dispose();
     }//GEN-LAST:event_actualizarBtnActionPerformed
 
     private void criarUsuarioBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_criarUsuarioBtnActionPerformed
         var escolherAccao = new CadastrarUsuario(usuario);
         escolherAccao.setLocationRelativeTo(null);
         escolherAccao.setVisible(true);
-        this.setVisible(false);
+            this.dispose();
     }//GEN-LAST:event_criarUsuarioBtnActionPerformed
 
     private void alterarSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_alterarSenhaActionPerformed
@@ -308,14 +331,14 @@ public class MenuPrincipal extends javax.swing.JFrame {
         var escolherAccao = new AlterarSenha(usuario);
         escolherAccao.setLocationRelativeTo(null);
         escolherAccao.setVisible(true);
-        this.setVisible(false);
+       this.dispose();
     }//GEN-LAST:event_alterarSenhaActionPerformed
 
     private void produzirRelatorioBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_produzirRelatorioBtnActionPerformed
         var escolherAccao = new ProduzirRelatorioPeriodico(usuario);
         escolherAccao.setLocationRelativeTo(null);
         escolherAccao.setVisible(true);
-        this.setVisible(false);
+            this.dispose();
     }//GEN-LAST:event_produzirRelatorioBtnActionPerformed
 
     private void verDadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_verDadosActionPerformed
@@ -328,9 +351,12 @@ public class MenuPrincipal extends javax.swing.JFrame {
         var inicio = new Sigemonitoria();
         inicio.setLocationRelativeTo(null);
         inicio.setVisible(true);
-        this.setVisible(false);
-
+        this.dispose();
     }//GEN-LAST:event_terminarSessaoActionPerformed
+
+    private void fecharAPPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fecharAPPActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_fecharAPPActionPerformed
 
     /**
      * @param args the command line arguments
@@ -360,6 +386,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JPanel direita;
     private javax.swing.JLabel emblema;
     private javax.swing.JPanel esquerda;
+    private javax.swing.JButton fecharAPP;
     private javax.swing.JLabel hospital;
     private javax.swing.JButton inserirBtn;
     private javax.swing.JLabel lema;

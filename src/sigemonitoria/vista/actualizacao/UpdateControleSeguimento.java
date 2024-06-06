@@ -1,4 +1,4 @@
-package sigemonitoria.vista.cadastro;
+package sigemonitoria.vista.actualizacao;
 
 import static java.awt.EventQueue.invokeLater;
 import java.text.ParseException;
@@ -6,7 +6,6 @@ import java.util.logging.Level;
 import static java.util.logging.Level.SEVERE;
 import java.util.logging.Logger;
 import static java.util.logging.Logger.getLogger;
-import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import static javax.persistence.Persistence.createEntityManagerFactory;
 import javax.swing.JOptionPane;
@@ -26,7 +25,7 @@ import sigemonitoria.vista.MenuPrincipal;
  *
  * @author Meldo Maunze
  */
-public class ControleSeguimento extends javax.swing.JFrame implements MetodosGerais {
+public class UpdateControleSeguimento extends javax.swing.JFrame implements MetodosGerais {
 
     EntityManagerFactory emf = createEntityManagerFactory("sigemonitoriaPU");
 
@@ -36,7 +35,7 @@ public class ControleSeguimento extends javax.swing.JFrame implements MetodosGer
     Doente doente;
     Utilizador usuario;
 
-    private LocalTrabalhoResidencia frame2 = null;
+    private UpdateLocalTrabalhoResidencia frame2 = null;
 
     /**
      * @param frame2
@@ -44,7 +43,7 @@ public class ControleSeguimento extends javax.swing.JFrame implements MetodosGer
      * @param caso
      * @param usuario the value of usuario
      */
-    public ControleSeguimento(LocalTrabalhoResidencia frame2, Doente doente, Caso caso, Utilizador usuario) {
+    public UpdateControleSeguimento(UpdateLocalTrabalhoResidencia frame2, Doente doente, Caso caso, Utilizador usuario) {
         initComponents();
         this.doente = doente;
         this.frame2 = frame2;
@@ -55,7 +54,7 @@ public class ControleSeguimento extends javax.swing.JFrame implements MetodosGer
         this.caso.setNid(doente);
     }
 
-    private ControleSeguimento() {
+    private UpdateControleSeguimento() {
         initComponents();
     }
 
@@ -591,7 +590,7 @@ public class ControleSeguimento extends javax.swing.JFrame implements MetodosGer
                 try {
                     caso.setDataConsultaAnterior(converterStringParaData(dataTexto));
                 } catch (ParseException ex) {
-                    Logger.getLogger(ControleSeguimento.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(UpdateControleSeguimento.class.getName()).log(Level.SEVERE, null, ex);
                 }
             } else {
                 showMessageDialog(this, "Formato de data inválido.\n Use dd/MM/aaaa.", "Data Invalida", ERROR_MESSAGE);
@@ -795,7 +794,7 @@ public class ControleSeguimento extends javax.swing.JFrame implements MetodosGer
                 try {
                     caso.setDataProxima(converterStringParaData(dataTexto));
                 } catch (ParseException ex) {
-                    Logger.getLogger(ControleSeguimento.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(UpdateControleSeguimento.class.getName()).log(Level.SEVERE, null, ex);
                 }
             } else {
                 showMessageDialog(this, "Formato de data inválido.\n Use dd/MM/aaaa.", "Data Invalida", ERROR_MESSAGE);
@@ -840,7 +839,7 @@ public class ControleSeguimento extends javax.swing.JFrame implements MetodosGer
                 try {
                     caso.setDataConsultaActual(converterStringParaData(dataTexto));
                 } catch (ParseException ex) {
-                    Logger.getLogger(ControleSeguimento.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(UpdateControleSeguimento.class.getName()).log(Level.SEVERE, null, ex);
                 }
             } else {
                 showMessageDialog(this, "Formato de data inválido.\n Use dd/MM/aaaa.", "Data Invalida", ERROR_MESSAGE);
@@ -894,10 +893,10 @@ public class ControleSeguimento extends javax.swing.JFrame implements MetodosGer
             try {
                 setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
             } catch (UnsupportedLookAndFeelException ex) {
-                getLogger(ControleSeguimento.class.getName()).log(SEVERE, null, ex);
+                getLogger(UpdateControleSeguimento.class.getName()).log(SEVERE, null, ex);
             }
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException ex) {
-            getLogger(ControleSeguimento.class.getName()).log(SEVERE, null, ex);
+            getLogger(UpdateControleSeguimento.class.getName()).log(SEVERE, null, ex);
         }
 
         frame2.setLocationRelativeTo(null);
@@ -912,10 +911,10 @@ public class ControleSeguimento extends javax.swing.JFrame implements MetodosGer
             JOptionPane.showMessageDialog(this, "\n Nome: " + doente.getNome() + "\nNID: " + doente.getNid() + "\n Idade: " + doente.getIdade(), "Doente Registado", JOptionPane.INFORMATION_MESSAGE);
 
         } catch (Exception ex) {
-            Logger.getLogger(ControleSeguimento.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(UpdateControleSeguimento.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        caso.setObservacao("Registo de Um novo Caso");
+        caso.setObservacao("Actualizacao de um Caso Existente");
         casos.create(caso);
         System.out.println(caso);
         JOptionPane.showMessageDialog(this, "\n Nid: " + caso.getNid().getNid() + "\nData: " + converterDataParaString(caso.getDataRegistoCaso()) + "\n US: " + caso.getUsDeAssistencia(), "Doente Registado", JOptionPane.INFORMATION_MESSAGE);
@@ -934,7 +933,7 @@ public class ControleSeguimento extends javax.swing.JFrame implements MetodosGer
                 try {
                     caso.setDataFacelimento(converterStringParaData(dataTexto));
                 } catch (ParseException ex) {
-                    Logger.getLogger(ControleSeguimento.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(UpdateControleSeguimento.class.getName()).log(Level.SEVERE, null, ex);
                 }
             } else {
                 showMessageDialog(this, "Formato de data inválido.\n Use dd/MM/aaaa.", "Data Invalida", ERROR_MESSAGE);
@@ -959,11 +958,11 @@ public class ControleSeguimento extends javax.swing.JFrame implements MetodosGer
                 }
             }
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ControleSeguimento.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(UpdateControleSeguimento.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
 
         invokeLater(() -> {
-            new ControleSeguimento().setVisible(true);
+            new UpdateControleSeguimento().setVisible(true);
         });
     }
 

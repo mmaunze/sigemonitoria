@@ -36,7 +36,7 @@ public interface MetodosGerais {
      * @param data
      * @return
      */
-    public default String converteDataParaString(Date data) {
+    public default String converterDataParaString(Date data) {
         var df = new SimpleDateFormat("yyyy-MM-dd");
         var dataFormatada = df.format(data);
         var partes = dataFormatada.split("-");
