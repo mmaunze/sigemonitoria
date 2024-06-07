@@ -339,7 +339,7 @@
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="99" green="ff" red="99" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Avancar"/>
+            <Property name="text" type="java.lang.String" value="Avançar"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="avancarBTNActionPerformed"/>

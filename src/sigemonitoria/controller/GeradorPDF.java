@@ -32,10 +32,6 @@ import sigemonitoria.modelo.Utilizador;
 
 public class GeradorPDF implements MetodosGerais {
 
-    public void imprimirRelatorio(List<Caso> casos, int ano, int mesInicio, int mesFim, Utilizador usuario) throws IOException {
-        //
-    }
-
     public void gerarRelatorio(List<Caso> casos, int ano, int mesInicio, int mesFim, Utilizador usuario) throws IOException {
 
         var fileChooser = new JFileChooser();
@@ -97,9 +93,9 @@ public class GeradorPDF implements MetodosGerais {
                 document.add(new Paragraph("Meses: " + (obterMesPorExtenso(mesInicio)).toUpperCase() + " a " + (obterMesPorExtenso(mesFim)).toUpperCase()));
                 document.add(new Paragraph("\n\n\n"));
 
-// Cria uma tabela com o número de colunas igual ao número de campos
+                // Cria uma tabela com o número de colunas igual ao número de campos
                 var table = new PdfPTable(12); // 12 colunas conforme o número de campos
-               table.setWidthPercentage(100);
+                table.setWidthPercentage(100);
 
                 // Adiciona o cabeçalho da tabela
                 addTableHeader(table);
@@ -171,4 +167,5 @@ public class GeradorPDF implements MetodosGerais {
         table.addCell(caso.getNid().getSectorTrabalho());
         table.addCell(caso.getNid().getMorada());
     }
+
 }

@@ -161,7 +161,7 @@ public class Sigemonitoria extends javax.swing.JFrame {
             }
         });
 
-        fecharAPP.setText("Fechar a Aplicacao");
+        fecharAPP.setText("Fechar a Aplicação");
         fecharAPP.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 fecharAPPActionPerformed(evt);

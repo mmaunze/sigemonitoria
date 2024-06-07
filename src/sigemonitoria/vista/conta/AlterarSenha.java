@@ -203,7 +203,7 @@ import sigemonitoria.vista.MenuPrincipal;
 
         terminarSessao.setBackground(new java.awt.Color(255, 0, 0));
         terminarSessao.setForeground(new java.awt.Color(255, 255, 255));
-        terminarSessao.setText("Terminar Sessao");
+        terminarSessao.setText("Terminar Sessão");
         terminarSessao.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 terminarSessaoActionPerformed(evt);

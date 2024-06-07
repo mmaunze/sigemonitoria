@@ -335,7 +335,7 @@ public class InformacaoBasicaPaciente extends javax.swing.JFrame implements Meto
         });
 
         avancarBTN.setBackground(new java.awt.Color(153, 255, 153));
-        avancarBTN.setText("Avancar");
+        avancarBTN.setText("Avançar");
         avancarBTN.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 avancarBTNActionPerformed(evt);
@@ -548,7 +548,7 @@ public class InformacaoBasicaPaciente extends javax.swing.JFrame implements Meto
                 localUsInput.requestFocus();
             }
         } else {
-            showMessageDialog(this, "Deve Preencher o Campo antes de avancar.", "Local da US Vazio", ERROR_MESSAGE);
+            showMessageDialog(this, "Deve Preencher o Campo antes de Avançar.", "Local da US Vazio", ERROR_MESSAGE);
             localUsInput.requestFocus();
         }
     }//GEN-LAST:event_localUsInputActionPerformed
@@ -642,7 +642,7 @@ public class InformacaoBasicaPaciente extends javax.swing.JFrame implements Meto
                 desabilitarSelect(nivelCarreiraInput);
             }
         } else {
-            showMessageDialog(this, "Deve Preencher o Campo antes de avancar.", "Carreira Vazia", ERROR_MESSAGE);
+            showMessageDialog(this, "Deve Preencher o Campo antes de Avançar.", "Carreira Vazia", ERROR_MESSAGE);
             carreiraInput.requestFocus();
             desabilitarSelect(nivelCarreiraInput);
         }
@@ -662,7 +662,7 @@ public class InformacaoBasicaPaciente extends javax.swing.JFrame implements Meto
                 desabilitarCampo(localUsInput);
             }
         } else {
-            showMessageDialog(this, "Deve Preencher o Campo antes de avancar.", "US de Assitencia Vazia", ERROR_MESSAGE);
+            showMessageDialog(this, "Deve Preencher o Campo antes de Avançar.", "US de Assitencia Vazia", ERROR_MESSAGE);
             usAssistenciaInput.requestFocus();
             desabilitarCampo(localUsInput);
         }
@@ -705,7 +705,7 @@ public class InformacaoBasicaPaciente extends javax.swing.JFrame implements Meto
                 desabilitarSelect(sexoInput);
             }
         } else {
-            showMessageDialog(this, "Deve Preencher o Campo antes de avancar.", "Nome Vazio", ERROR_MESSAGE);
+            showMessageDialog(this, "Deve Preencher o Campo antes de Avançar.", "Nome Vazio", ERROR_MESSAGE);
             nomePacienteInput.requestFocus();
             desabilitarSelect(sexoInput);
         }
@@ -742,8 +742,8 @@ public class InformacaoBasicaPaciente extends javax.swing.JFrame implements Meto
 
     private void gaurdarRascunhoBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gaurdarRascunhoBTNActionPerformed
 
-        String mensagem = "Para aproveitar esta funcionalidade incrível, \nvocê pode fazer um upgrade do seu plano. \nContacte o desenvolvedor para mais detalhes";
-        showMessageDialog(this, mensagem, "Funcionalidade Premium", ERROR_MESSAGE);
+        String mensagem = "Para aproveitar esta funcionalidade incrível, \nvocê pode solicitar a versão completa do sistema. \nContacte o desenvolvedor para mais detalhes";
+        showMessageDialog(this, mensagem, "Funcionalidade Avançada", ERROR_MESSAGE);
 
     }//GEN-LAST:event_gaurdarRascunhoBTNActionPerformed
 
@@ -781,7 +781,7 @@ public class InformacaoBasicaPaciente extends javax.swing.JFrame implements Meto
                 desabilitarCampo(dataNascimentoInput);
             }
         } else {
-            showMessageDialog(this, "Deve Preencher o Campo antes de avancar.", "Categoria Vazia", ERROR_MESSAGE);
+            showMessageDialog(this, "Deve Preencher o Campo antes de Avançar.", "Categoria Vazia", ERROR_MESSAGE);
             categoriaInput.requestFocus();
             desabilitarCampo(dataNascimentoInput);
         }
@@ -801,7 +801,7 @@ public class InformacaoBasicaPaciente extends javax.swing.JFrame implements Meto
                 desabilitarCampo(usAssistenciaInput);
             }
         } else {
-            showMessageDialog(this, "Deve Preencher o Campo antes de avancar.", "Distrito Vazio", ERROR_MESSAGE);
+            showMessageDialog(this, "Deve Preencher o Campo antes de Avançar.", "Distrito Vazio", ERROR_MESSAGE);
             distritoNascimentoInput.requestFocus();
             desabilitarCampo(usAssistenciaInput);
         }

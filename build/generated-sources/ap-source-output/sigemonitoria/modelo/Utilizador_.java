@@ -6,7 +6,7 @@ import javax.persistence.metamodel.StaticMetamodel;
 import sigemonitoria.modelo.Hospital;
 import sigemonitoria.modelo.TipoUtilizador;
 
-@Generated(value="org.eclipse.persistence.internal.jpa.modelgen.CanonicalModelProcessor", date="2024-06-07T11:31:36", comments="EclipseLink-2.7.12.v20230209-rNA")
+@Generated(value="org.eclipse.persistence.internal.jpa.modelgen.CanonicalModelProcessor", date="2024-06-07T15:01:05", comments="EclipseLink-2.7.12.v20230209-rNA")
 @StaticMetamodel(Utilizador.class)
 public class Utilizador_ { 
 

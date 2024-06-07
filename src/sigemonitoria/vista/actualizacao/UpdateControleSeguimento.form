@@ -213,7 +213,7 @@
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="dataFalecimentoTxt" linkSize="6" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="dataFacecimentoInput" max="32767" attributes="0"/>
+                          <Component id="dataFalecimentoInput" max="32767" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="1" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
@@ -296,7 +296,7 @@
                       <Component id="situacaoActualPacienteTxt" linkSize="5" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="situacaoActualPacienteInput" linkSize="5" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="dataFalecimentoTxt" linkSize="5" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="dataFacecimentoInput" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="dataFalecimentoInput" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace pref="28" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
@@ -708,14 +708,14 @@
             <Property name="text" type="java.lang.String" value="Data de Falecimento"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="dataFacecimentoInput">
+        <Component class="javax.swing.JTextField" name="dataFalecimentoInput">
           <Properties>
             <Property name="editable" type="boolean" value="false"/>
             <Property name="enabled" type="boolean" value="false"/>
             <Property name="focusable" type="boolean" value="false"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="dataFacecimentoInputActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="dataFalecimentoInputActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JButton" name="recuarBTN">

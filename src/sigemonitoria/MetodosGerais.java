@@ -1,5 +1,6 @@
 package sigemonitoria;
 
+import java.math.BigInteger;
 import java.text.DateFormatSymbols;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -13,9 +14,12 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Locale;
+import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import static javax.persistence.Persistence.createEntityManagerFactory;
+import javax.persistence.Query;
 import static javax.persistence.TemporalType.DATE;
+import javax.persistence.TypedQuery;
 import javax.swing.JComboBox;
 import javax.swing.JTextField;
 import sigemonitoria.controller.DoenteJpaController;
@@ -51,19 +55,47 @@ public interface MetodosGerais {
         return String.format("%s/%s/%s", partes[2], partes[1], partes[0]);
     }
 
-    public default String gerarNid() {
-
+    public default Caso obterUltimoCasoPorNid(String nid) {
         EntityManagerFactory emf = createEntityManagerFactory("sigemonitoriaPU");
-        DoenteJpaController doentes = new DoenteJpaController(emf);
-        Integer n = Integer.valueOf((doentes.findDoenteEntities()).get((doentes.findDoenteEntities().size()) - 1).getNid());
-        n = n + 1;
-        if (n > 99999) {
-            n = n / 10;
-            return String.valueOf(n);
-        } else {
-            return String.valueOf(n);
-        }
+        EntityManager em = emf.createEntityManager();
 
+        try {
+            // Consulta JPQL para obter o último Caso baseado no NID
+            String jpql = "SELECT c FROM Caso c WHERE c.nid.nid = :nid ORDER BY c.dataRegistoCaso DESC";
+            TypedQuery<Caso> query = em.createQuery(jpql, Caso.class);
+            query.setParameter("nid", nid);
+            query.setMaxResults(1);
+
+            Caso ultimoCaso = query.getResultList().stream().findFirst().orElse(null);
+            return ultimoCaso;
+        } finally {
+            em.close();
+            emf.close();
+        }
+    }
+
+    public default String gerarNid() {
+        EntityManagerFactory emf = createEntityManagerFactory("sigemonitoriaPU");
+        EntityManager em = emf.createEntityManager();
+
+        try {
+            // Realiza a consulta para obter o maior nid existente
+            String jpql = "SELECT MAX(CAST(d.nid AS UNSIGNED)) FROM Doente d";
+            Query query = em.createQuery(jpql);
+            BigInteger maxNidBigInteger = (BigInteger) query.getSingleResult();
+
+            // Converte o BigInteger para Long
+            Long maxNid = (maxNidBigInteger != null) ? maxNidBigInteger.longValue() : null;
+
+            // Verifica se maxNid é null e inicia a partir de 1 se não houver nenhum nid existente
+            long newNid = (maxNid != null ? maxNid : 0) + 1;
+
+            // Formata o novo nid para garantir 5 dígitos
+            return String.format("%05d", newNid);
+        } finally {
+            em.close();
+            emf.close();
+        }
     }
 
     /**
@@ -193,8 +225,8 @@ public interface MetodosGerais {
         campo.setFocusable(false);
         campo.setSelectedIndex(0);
     }
-    
-          public default  int obterNumeroMes(String nomeMes) {
+
+    public default int obterNumeroMes(String nomeMes) {
         var symbols = new DateFormatSymbols(new Locale("pt", "BR"));
         var meses = symbols.getMonths();
         for (var i = 0; i < meses.length; i++) {
@@ -204,11 +236,11 @@ public interface MetodosGerais {
         }
         return 0;
     }
-          
-        public default List<Caso> findPacientesPorPeriodo(int ano, int mesInicio, int mesFim) {
+
+    public default List<Caso> findPacientesPorPeriodo(int ano, int mesInicio, int mesFim) {
         EntityManagerFactory emf = createEntityManagerFactory("sigemonitoriaPU");
         var em = emf.createEntityManager();
-        
+
         var dataInicio = converterParaData(ano, mesInicio, 1);
         var dataFim = converterParaData(ano, mesFim, 28);
         try {
@@ -228,7 +260,7 @@ public interface MetodosGerais {
         }
     }
 
-           private Date converterParaData(int ano, int mes, int dia) {
+    private Date converterParaData(int ano, int mes, int dia) {
         var calendar = getInstance();
         calendar.set(YEAR, ano);
         calendar.set(MONTH, mes - 1); // Mês em Java é baseado em zero (janeiro = 0, fevereiro = 1, ...)

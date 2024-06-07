@@ -30,7 +30,6 @@ import sigemonitoria.vista.MenuPrincipal;
 public class ControleSeguimento extends javax.swing.JFrame implements MetodosGerais {
 
     EntityManagerFactory emf = createEntityManagerFactory("sigemonitoriaPU");
-
     DoenteJpaController doentes = new DoenteJpaController(emf);
     CasoJpaController casos = new CasoJpaController(emf);
     Caso caso;
@@ -54,6 +53,9 @@ public class ControleSeguimento extends javax.swing.JFrame implements MetodosGer
         this.hospital.setText(usuario.getHospital().getNomeHospital());
         this.caso = caso;
         this.caso.setNid(doente);
+        
+      
+        
     }
 
     private ControleSeguimento() {
@@ -892,9 +894,9 @@ public class ControleSeguimento extends javax.swing.JFrame implements MetodosGer
 
     private void gaurdarRascunhoBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gaurdarRascunhoBTNActionPerformed
 
-        String mensagem = "Para aproveitar esta funcionalidade incrível, \nvocê pode fazer um upgrade do seu plano. \nContacte o desenvolvedor para mais detalhes";
+        String mensagem = "Para aproveitar esta funcionalidade incrível, \nvocê pode solicitar a versão completa do sistema. \nContacte o desenvolvedor para mais detalhes";
 
-        showMessageDialog(this, mensagem, "Funcionalidade Premium", ERROR_MESSAGE);
+        showMessageDialog(this, mensagem, "Funcionalidade Avançada", ERROR_MESSAGE);
     }//GEN-LAST:event_gaurdarRascunhoBTNActionPerformed
 
     private void recuarBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_recuarBTNActionPerformed

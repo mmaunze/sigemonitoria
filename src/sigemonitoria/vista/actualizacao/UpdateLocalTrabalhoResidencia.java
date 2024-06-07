@@ -237,7 +237,7 @@ public class UpdateLocalTrabalhoResidencia extends javax.swing.JFrame implements
         });
 
         avancarBTN.setBackground(new java.awt.Color(153, 255, 153));
-        avancarBTN.setText("Avancar");
+        avancarBTN.setText("Avançar");
         avancarBTN.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 avancarBTNActionPerformed(evt);
@@ -401,7 +401,7 @@ public class UpdateLocalTrabalhoResidencia extends javax.swing.JFrame implements
                 desabilitarSelect(sectorTrabalhoInput);
             }
         } else {
-            showMessageDialog(this, "Deve Preencher o Campo antes de avancar.", "Estabelecimento de Saude Vazio", ERROR_MESSAGE);
+            showMessageDialog(this, "Deve Preencher o Campo antes de Avançar.", "Estabelecimento de Saude Vazio", ERROR_MESSAGE);
             estabelecimentoSaudeInput.requestFocus();
             desabilitarSelect(sectorTrabalhoInput);
         }
@@ -449,7 +449,7 @@ public class UpdateLocalTrabalhoResidencia extends javax.swing.JFrame implements
                 desabilitarCampo(estabelecimentoSaudeInput);
             }
         } else {
-            showMessageDialog(this, "Deve Preencher o Campo antes de avancar.", "Distrito Vazio", ERROR_MESSAGE);
+            showMessageDialog(this, "Deve Preencher o Campo antes de Avançar.", "Distrito Vazio", ERROR_MESSAGE);
             distritoResidenciaInput.requestFocus();
             desabilitarCampo(estabelecimentoSaudeInput);
         }
@@ -457,9 +457,9 @@ public class UpdateLocalTrabalhoResidencia extends javax.swing.JFrame implements
 
     private void gaurdarRascunhoBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gaurdarRascunhoBTNActionPerformed
 
-        String mensagem = "Para aproveitar esta funcionalidade incrível, \nvocê pode fazer um upgrade do seu plano. \nContacte o desenvolvedor para mais detalhes";
+        String mensagem = "Para aproveitar esta funcionalidade incrível, \nvocê pode solicitar a versão completa do sistema. \nContacte o desenvolvedor para mais detalhes";
 
-        showMessageDialog(this, mensagem, "Funcionalidade Premium", ERROR_MESSAGE);
+        showMessageDialog(this, mensagem, "Funcionalidade Avançada", ERROR_MESSAGE);
     }//GEN-LAST:event_gaurdarRascunhoBTNActionPerformed
 
     private void avancarBTN1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_avancarBTN1ActionPerformed
@@ -484,7 +484,7 @@ public class UpdateLocalTrabalhoResidencia extends javax.swing.JFrame implements
                 moradaInput.requestFocus();
             }
         } else {
-            showMessageDialog(this, "Deve Preencher o Campo antes de avancar.", "Morada Vazia", ERROR_MESSAGE);
+            showMessageDialog(this, "Deve Preencher o Campo antes de Avançar.", "Morada Vazia", ERROR_MESSAGE);
             moradaInput.requestFocus();
 
         }
@@ -547,7 +547,7 @@ public class UpdateLocalTrabalhoResidencia extends javax.swing.JFrame implements
             frame3.setLocationRelativeTo(null);
             frame3.setVisible(true);
         } else {
-            showMessageDialog(this, "Deve Preencher Todos os Campos Antes de Avancar", "Campos Vazios", ERROR_MESSAGE);
+            showMessageDialog(this, "Deve Preencher Todos os Campos Antes de Avançar", "Campos Vazios", ERROR_MESSAGE);
         }
     }//GEN-LAST:event_avancarBTNActionPerformed
 

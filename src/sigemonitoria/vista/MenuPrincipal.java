@@ -10,6 +10,7 @@ import static javax.swing.UIManager.setLookAndFeel;
 import javax.swing.UnsupportedLookAndFeelException;
 import sigemonitoria.Sigemonitoria;
 import sigemonitoria.modelo.Utilizador;
+import sigemonitoria.vista.actualizacao.InserirNid;
 import sigemonitoria.vista.cadastro.InformacaoBasicaPaciente;
 import sigemonitoria.vista.dados.ProduzirRelatorioPeriodico;
 
@@ -124,7 +125,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         terminarSessao.setBackground(new java.awt.Color(255, 0, 0));
         terminarSessao.setForeground(new java.awt.Color(255, 255, 255));
-        terminarSessao.setText("Terminar Sessao");
+        terminarSessao.setText("Terminar Sessão");
         terminarSessao.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 terminarSessaoActionPerformed(evt);
@@ -132,7 +133,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         });
 
         fecharAPP.setBackground(new java.awt.Color(204, 255, 255));
-        fecharAPP.setText("Fechar a Aplicacao");
+        fecharAPP.setText("Fechar a Aplicação");
         fecharAPP.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 fecharAPPActionPerformed(evt);
@@ -322,22 +323,23 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_inserirBtnActionPerformed
 
     private void actualizarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_actualizarBtnActionPerformed
-
-     this.dispose();
+   var escolherAccao = new InserirNid(usuario);
+        escolherAccao.setLocationRelativeTo(null);
+        escolherAccao.setVisible(true);
     }//GEN-LAST:event_actualizarBtnActionPerformed
 
     private void criarUsuarioBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_criarUsuarioBtnActionPerformed
    
-        String mensagem = "Para aproveitar esta funcionalidade incrível, \nvocê pode fazer um upgrade do seu plano. \nContacte o desenvolvedor para mais detalhes";
-        showMessageDialog(this, mensagem, "Funcionalidade Premium", ERROR_MESSAGE);
+        String mensagem = "Para aproveitar esta funcionalidade incrível, \nvocê pode solicitar a versão completa do sistema. \nContacte o desenvolvedor para mais detalhes";
+        showMessageDialog(this, mensagem, "Funcionalidade Avançada", ERROR_MESSAGE);
         
     }//GEN-LAST:event_criarUsuarioBtnActionPerformed
 
     private void alterarSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_alterarSenhaActionPerformed
 
 
-   String mensagem = "Para aproveitar esta funcionalidade incrível, \nvocê pode fazer um upgrade do seu plano. \nContacte o desenvolvedor para mais detalhes";
-        showMessageDialog(this, mensagem, "Funcionalidade Premium", ERROR_MESSAGE);
+   String mensagem = "Para aproveitar esta funcionalidade incrível, \nvocê pode solicitar a versão completa do sistema. \nContacte o desenvolvedor para mais detalhes";
+        showMessageDialog(this, mensagem, "Funcionalidade Avançada", ERROR_MESSAGE);
         
     }//GEN-LAST:event_alterarSenhaActionPerformed
 
@@ -349,9 +351,9 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_produzirRelatorioBtnActionPerformed
 
     private void verDadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_verDadosActionPerformed
-        String mensagem = "Para aproveitar esta funcionalidade incrível, \nvocê pode fazer um upgrade do seu plano. \nContacte o desenvolvedor para mais detalhes";
+        String mensagem = "Para aproveitar esta funcionalidade incrível, \nvocê pode solicitar a versão completa do sistema. \nContacte o desenvolvedor para mais detalhes";
 
-        showMessageDialog(this, mensagem, "Funcionalidade Premium", ERROR_MESSAGE);
+        showMessageDialog(this, mensagem, "Funcionalidade Avançada", ERROR_MESSAGE);
         
     }//GEN-LAST:event_verDadosActionPerformed
 
@@ -368,8 +370,8 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_fecharAPPActionPerformed
 
     private void recuperarContaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_recuperarContaActionPerformed
-        String mensagem = "Para aproveitar esta funcionalidade incrível, \nvocê pode fazer um upgrade do seu plano. \nContacte o desenvolvedor para mais detalhes";
-        showMessageDialog(this, mensagem, "Funcionalidade Premium", ERROR_MESSAGE);
+        String mensagem = "Para aproveitar esta funcionalidade incrível, \nvocê pode solicitar a versão completa do sistema. \nContacte o desenvolvedor para mais detalhes";
+        showMessageDialog(this, mensagem, "Funcionalidade Avançada", ERROR_MESSAGE);
         
     }//GEN-LAST:event_recuperarContaActionPerformed
 

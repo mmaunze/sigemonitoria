@@ -6,7 +6,7 @@ import javax.persistence.metamodel.SingularAttribute;
 import javax.persistence.metamodel.StaticMetamodel;
 import sigemonitoria.modelo.Doente;
 
-@Generated(value="org.eclipse.persistence.internal.jpa.modelgen.CanonicalModelProcessor", date="2024-06-07T11:31:36", comments="EclipseLink-2.7.12.v20230209-rNA")
+@Generated(value="org.eclipse.persistence.internal.jpa.modelgen.CanonicalModelProcessor", date="2024-06-07T15:01:05", comments="EclipseLink-2.7.12.v20230209-rNA")
 @StaticMetamodel(Caso.class)
 public class Caso_ { 
 

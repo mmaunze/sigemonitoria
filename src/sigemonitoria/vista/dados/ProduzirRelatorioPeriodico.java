@@ -78,7 +78,6 @@ public class ProduzirRelatorioPeriodico extends javax.swing.JFrame implements Me
         mesInicialInput = new javax.swing.JComboBox<>();
         mesFinalInput = new javax.swing.JComboBox<>();
         mesLabel1 = new javax.swing.JLabel();
-        imprimirBTN = new javax.swing.JButton();
         descarregarBTN = new javax.swing.JButton();
         terminarSessao = new javax.swing.JButton();
         voltarBtn = new javax.swing.JButton();
@@ -213,14 +212,6 @@ public class ProduzirRelatorioPeriodico extends javax.swing.JFrame implements Me
 
         mesLabel1.setText("Mes Final");
 
-        imprimirBTN.setBackground(new java.awt.Color(153, 153, 255));
-        imprimirBTN.setText("imprimir");
-        imprimirBTN.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                imprimirBTNActionPerformed(evt);
-            }
-        });
-
         descarregarBTN.setBackground(new java.awt.Color(255, 204, 153));
         descarregarBTN.setText("descarregar");
         descarregarBTN.setEnabled(false);
@@ -233,7 +224,7 @@ public class ProduzirRelatorioPeriodico extends javax.swing.JFrame implements Me
 
         terminarSessao.setBackground(new java.awt.Color(255, 0, 0));
         terminarSessao.setForeground(new java.awt.Color(255, 255, 255));
-        terminarSessao.setText("Terminar Sessao");
+        terminarSessao.setText("Terminar Sessão");
         terminarSessao.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 terminarSessaoActionPerformed(evt);
@@ -269,15 +260,12 @@ public class ProduzirRelatorioPeriodico extends javax.swing.JFrame implements Me
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, esquerda1Layout.createSequentialGroup()
                         .addGroup(esquerda1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(terminarSessao, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, esquerda1Layout.createSequentialGroup()
-                                .addComponent(imprimirBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, Short.MAX_VALUE)
-                                .addComponent(descarregarBTN, javax.swing.GroupLayout.DEFAULT_SIZE, 93, Short.MAX_VALUE))
-                            .addComponent(voltarBtn, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(voltarBtn, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(descarregarBTN, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(17, 17, 17))))
         );
 
-        esquerda1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {anoInput, anoLabel, descarregarBTN, imprimirBTN, mesFinalInput, mesInicialInput, mesLabel, mesLabel1});
+        esquerda1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {anoInput, anoLabel, mesFinalInput, mesInicialInput, mesLabel, mesLabel1});
 
         esquerda1Layout.setVerticalGroup(
             esquerda1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -295,9 +283,7 @@ public class ProduzirRelatorioPeriodico extends javax.swing.JFrame implements Me
                     .addComponent(mesFinalInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(mesLabel1))
                 .addGap(35, 35, 35)
-                .addGroup(esquerda1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(imprimirBTN)
-                    .addComponent(descarregarBTN))
+                .addComponent(descarregarBTN)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(voltarBtn)
                 .addGap(12, 12, 12)
@@ -305,7 +291,7 @@ public class ProduzirRelatorioPeriodico extends javax.swing.JFrame implements Me
                 .addContainerGap())
         );
 
-        esquerda1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {anoInput, anoLabel, descarregarBTN, imprimirBTN, mesFinalInput, mesInicialInput, mesLabel, mesLabel1});
+        esquerda1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {anoInput, anoLabel, descarregarBTN, mesFinalInput, mesInicialInput, mesLabel, mesLabel1});
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -313,7 +299,7 @@ public class ProduzirRelatorioPeriodico extends javax.swing.JFrame implements Me
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(esquerda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
                 .addComponent(esquerda1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -334,10 +320,6 @@ public class ProduzirRelatorioPeriodico extends javax.swing.JFrame implements Me
     private void usernameTXTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usernameTXTActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_usernameTXTActionPerformed
-
-    private void imprimirBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imprimirBTNActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_imprimirBTNActionPerformed
 
     
     private void descarregarBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_descarregarBTNActionPerformed
@@ -367,16 +349,9 @@ public class ProduzirRelatorioPeriodico extends javax.swing.JFrame implements Me
         }
     }
 
-    private void ImprimirActionPerformed(java.awt.event.ActionEvent evt) {
-        var geradorPDF = new GeradorPDF();
-        var pct = findPacientesPorPeriodo(anoo, mesInicio, mesFim);
-        try {
-            geradorPDF.imprimirRelatorio(pct, anoo, mesInicio, mesFim, usuario);
-        } catch (IOException ex) {
-            getLogger(ProduzirRelatorioPeriodico.class.getName()).log(SEVERE, null, ex);
-        }
+    /* 
     }//GEN-LAST:event_descarregarBTNActionPerformed
-
+*/
     private void terminarSessaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_terminarSessaoActionPerformed
         showMessageDialog(this, "A sessão foi encerrada. Você será desconectado.", "Sessão Encerrada", INFORMATION_MESSAGE);
         var inicio = new Sigemonitoria();
@@ -465,7 +440,6 @@ public class ProduzirRelatorioPeriodico extends javax.swing.JFrame implements Me
     private javax.swing.JPanel esquerda;
     private javax.swing.JPanel esquerda1;
     private javax.swing.JLabel hospital;
-    private javax.swing.JButton imprimirBTN;
     private javax.swing.JLabel lema;
     private javax.swing.JComboBox<String> mesFinalInput;
     private javax.swing.JComboBox<String> mesInicialInput;

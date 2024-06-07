@@ -31,7 +31,7 @@ public class UpdateControleSeguimento extends javax.swing.JFrame implements Meto
     EntityManagerFactory emf = createEntityManagerFactory("sigemonitoriaPU");
 
     DoenteJpaController doentes = new DoenteJpaController(emf);
-    
+
     CasoJpaController casos = new CasoJpaController(emf);
     Caso caso;
     Doente doente;
@@ -54,6 +54,81 @@ public class UpdateControleSeguimento extends javax.swing.JFrame implements Meto
         this.hospital.setText(usuario.getHospital().getNomeHospital());
         this.caso = caso;
         this.caso.setNid(doente);
+
+        if (doente != null && caso != null) {
+
+            habilitarSelect(consultaMedicaInput);
+            consultaMedicaInput.setSelectedItem(caso.getConsultaMedica());
+            consultaMedicaPreenchido = true;
+
+            habilitarSelect(enfermidadeInput);
+            enfermidadeInput.setSelectedItem(caso.getEnfermidade());
+            enfermidadePreenchido = true;
+
+            habilitarSelect(rastreioInput);
+            rastreioInput.setSelectedItem(caso.getRastreio());
+            rastreioPreenchido = true;
+
+            habilitarSelect(diagnosticoInput);
+            diagnosticoInput.setSelectedItem(caso.getDiagnostico());
+            diagnosticoPreenchido = true;
+
+            habilitarSelect(aonInput);
+            aonInput.setSelectedItem(caso.getAon());
+            aonPreenchido = true;
+
+            habilitarSelect(apssInput);
+            apssInput.setSelectedItem(caso.getApss());
+            apssPreenchido = true;
+
+            habilitarSelect(espAnteriorInput);
+            espAnteriorInput.setSelectedItem(caso.getEspAnterior());
+            espAnteriorPreenchido = true;
+
+            habilitarCampo(dataConsultaAnteriorInput);
+            dataConsultaAnteriorInput.setText(converterDataParaString(caso.getDataConsultaAnterior()));
+            dataConsultaAnteriorPreencido = true;
+
+            habilitarSelect(espActualInput);
+            espActualInput.setSelectedItem(caso.getEspActual());
+            espActualPreenchido = true;
+
+            habilitarCampo(dataConsultaActualInput);
+            dataConsultaActualInput.setText(converterDataParaString(caso.getDataConsultaActual()));
+            dataConsultaActualPreencido = true;
+
+            habilitarCampo(dataProximaConsultaInput);
+            dataProximaConsultaInput.setText(converterDataParaString(caso.getDataProxima()));
+            dataProximaConsultaPreencido = true;
+
+            habilitarSelect(espObservadoInput);
+            espObservadoInput.setSelectedItem(caso.getEspProximo());
+            espProximoPreenchido = true;
+
+            habilitarSelect(situacaoActualPacienteInput);
+            situacaoActualPacienteInput.setSelectedItem(caso.getSituacaoActualPaciente());
+            situacaoActualPacientePreenchido = true;
+            if (caso.getSituacaoActualPaciente().equalsIgnoreCase("falecido")) {
+                habilitarCampo(dataFalecimentoInput);
+                if (caso.getDataFacelimento() != null) {
+                    dataFalecimentoInput.setText(converterDataParaString(caso.getDataFacelimento()));
+
+                } else {
+                    dataFalecimentoInput.setText(converterDataParaString(new Date()));
+                }
+            }
+            avancarBTN.setEnabled(true);
+            avancarBTN.requestFocus();
+
+        } else {
+            String mensagem = "Nao foi fornecido nenhum NID\n, portanto,\n nao ha dados para actualizar,\n Redireccionando ao Menu";
+            showMessageDialog(this, mensagem, "NID vazio", ERROR_MESSAGE);
+            var escolherAccao = new MenuPrincipal(usuario);
+            escolherAccao.setLocationRelativeTo(null);
+            escolherAccao.setVisible(true);
+            this.dispose();
+
+        }
     }
 
     private UpdateControleSeguimento() {
@@ -104,7 +179,7 @@ public class UpdateControleSeguimento extends javax.swing.JFrame implements Meto
         dataConsultaActualInput = new javax.swing.JTextField();
         consultaMedicaInput = new javax.swing.JComboBox<>();
         dataFalecimentoTxt = new javax.swing.JLabel();
-        dataFacecimentoInput = new javax.swing.JTextField();
+        dataFalecimentoInput = new javax.swing.JTextField();
         recuarBTN = new javax.swing.JButton();
         username = new javax.swing.JTextField();
         actualizarBTN = new javax.swing.JButton();
@@ -351,12 +426,12 @@ public class UpdateControleSeguimento extends javax.swing.JFrame implements Meto
         dataFalecimentoTxt.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         dataFalecimentoTxt.setText("Data de Falecimento");
 
-        dataFacecimentoInput.setEditable(false);
-        dataFacecimentoInput.setEnabled(false);
-        dataFacecimentoInput.setFocusable(false);
-        dataFacecimentoInput.addActionListener(new java.awt.event.ActionListener() {
+        dataFalecimentoInput.setEditable(false);
+        dataFalecimentoInput.setEnabled(false);
+        dataFalecimentoInput.setFocusable(false);
+        dataFalecimentoInput.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                dataFacecimentoInputActionPerformed(evt);
+                dataFalecimentoInputActionPerformed(evt);
             }
         });
 
@@ -462,7 +537,7 @@ public class UpdateControleSeguimento extends javax.swing.JFrame implements Meto
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(dataFalecimentoTxt)
                         .addGap(18, 18, 18)
-                        .addComponent(dataFacecimentoInput))
+                        .addComponent(dataFalecimentoInput))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, cadastroLayout.createSequentialGroup()
                         .addGroup(cadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(cadastroLayout.createSequentialGroup()
@@ -529,7 +604,7 @@ public class UpdateControleSeguimento extends javax.swing.JFrame implements Meto
                     .addComponent(situacaoActualPacienteTxt)
                     .addComponent(situacaoActualPacienteInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(dataFalecimentoTxt)
-                    .addComponent(dataFacecimentoInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(dataFalecimentoInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
                 .addGroup(cadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(recuarBTN)
@@ -725,8 +800,8 @@ public class UpdateControleSeguimento extends javax.swing.JFrame implements Meto
         if (!situacaoActualPacienteSelecionado.equals("seleccionar")) {
             situacaoActualPacientePreenchido = true;
             if (situacaoActualPacienteSelecionado.equals("Falecido")) {
-                habilitarCampo(dataFacecimentoInput);
-                dataFacecimentoInput.requestFocus();
+                habilitarCampo(dataFalecimentoInput);
+                dataFalecimentoInput.requestFocus();
                 caso.setSituacaoActualPaciente(situacaoActualPacienteSelecionado);
             } else {
                 actualizarBTN.requestFocus();
@@ -735,7 +810,7 @@ public class UpdateControleSeguimento extends javax.swing.JFrame implements Meto
             }
         } else {
             showMessageDialog(this, "Por favor selecione uma opcao válida.", "Seleccionar Campo", ERROR_MESSAGE);
-            desabilitarCampo(dataFacecimentoInput);
+            desabilitarCampo(dataFalecimentoInput);
             situacaoActualPacienteInput.requestFocus();
         }
     }//GEN-LAST:event_situacaoActualPacienteInputActionPerformed
@@ -883,9 +958,9 @@ public class UpdateControleSeguimento extends javax.swing.JFrame implements Meto
 
     private void gaurdarRascunhoBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gaurdarRascunhoBTNActionPerformed
 
-        String mensagem = "Para aproveitar esta funcionalidade incrível, \nvocê pode fazer um upgrade do seu plano. \nContacte o desenvolvedor para mais detalhes";
+        String mensagem = "Para aproveitar esta funcionalidade incrível, \nvocê pode solicitar a versão completa do sistema. \nContacte o desenvolvedor para mais detalhes";
 
-        showMessageDialog(this, mensagem, "Funcionalidade Premium", ERROR_MESSAGE);
+        showMessageDialog(this, mensagem, "Funcionalidade Avançada", ERROR_MESSAGE);
     }//GEN-LAST:event_gaurdarRascunhoBTNActionPerformed
 
     private void recuarBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_recuarBTNActionPerformed
@@ -925,8 +1000,8 @@ public class UpdateControleSeguimento extends javax.swing.JFrame implements Meto
         this.setVisible(false);
     }//GEN-LAST:event_actualizarBTNActionPerformed
 
-    private void dataFacecimentoInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dataFacecimentoInputActionPerformed
-        var dataTexto = dataFacecimentoInput.getText();
+    private void dataFalecimentoInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dataFalecimentoInputActionPerformed
+        var dataTexto = dataFalecimentoInput.getText();
         if (dataTexto != null && !dataTexto.trim().isEmpty()) {
             if (dataValida(dataTexto)) {
                 actualizarBTN.requestFocus();
@@ -937,13 +1012,13 @@ public class UpdateControleSeguimento extends javax.swing.JFrame implements Meto
                 }
             } else {
                 showMessageDialog(this, "Formato de data inválido.\n Use dd/MM/aaaa.", "Data Invalida", ERROR_MESSAGE);
-                dataFacecimentoInput.requestFocus();
+                dataFalecimentoInput.requestFocus();
             }
         } else {
             showMessageDialog(this, "Por favor, \n preencha a Data de Facelecimento.");
-            dataFacecimentoInput.requestFocus();
+            dataFalecimentoInput.requestFocus();
         }
-    }//GEN-LAST:event_dataFacecimentoInputActionPerformed
+    }//GEN-LAST:event_dataFalecimentoInputActionPerformed
 
     /**
      * @param args the command line arguments
@@ -983,7 +1058,7 @@ public class UpdateControleSeguimento extends javax.swing.JFrame implements Meto
     private javax.swing.JLabel dataConsultaActualTxt;
     private javax.swing.JTextField dataConsultaAnteriorInput;
     private javax.swing.JLabel dataConsultaAnteriorTxt;
-    private javax.swing.JTextField dataFacecimentoInput;
+    private javax.swing.JTextField dataFalecimentoInput;
     private javax.swing.JLabel dataFalecimentoTxt;
     private javax.swing.JTextField dataProximaConsultaInput;
     private javax.swing.JLabel dataProximaConsultaTxt;

@@ -39,6 +39,7 @@ public class UpdateInformacaoBasicaPaciente extends javax.swing.JFrame implement
     boolean nomePreenchido = false;
     boolean nivelCarreiraPreenchido = false;
     boolean sexoPreencido = false;
+
     /**
      *
      * @param usuario the value of usuario
@@ -51,16 +52,27 @@ public class UpdateInformacaoBasicaPaciente extends javax.swing.JFrame implement
         this.username.setText(usuario.getNomeCompleto());
         this.hospital.setText(usuario.getHospital().getNomeHospital());
         if (paciente != null) {
-            List<Caso> casos = paciente.getCasoList();
-            var ultimoCaso = casos.get(casos.size() - 1);
-            this.caso = ultimoCaso;
+
+            var ultimoCaso = obterUltimoCasoPorNid(paciente.getNid());
+            if (ultimoCaso != null) {
+                this.caso = ultimoCaso;
+
+                habilitarCampo(dataRegistoCasoInput);
+                this.dataRegistoCasoInput.setText(converterDataParaString(caso.getDataRegistoCaso()));
+                dataRegistoCasoPreencido = true;
+
+                habilitarCampo(usAssistenciaInput);
+                usAssistenciaInput.setText(caso.getUsDeAssistencia());
+                usDeAssistenciaPreenchido = true;
+
+                habilitarCampo(localUsInput);
+                localUsInput.setText(caso.getUsDeAssistencia());
+                localDaUsPreenchido = true;
+
+            }
 
             nidInput.setText(paciente.getNid());
             nidInput.setEnabled(true);
-
-            habilitarCampo(dataRegistoCasoInput);
-            this.dataRegistoCasoInput.setText(converterDataParaString(caso.getDataRegistoCaso()));
-            dataRegistoCasoPreencido = true;
 
             habilitarCampo(nomePacienteInput);
             this.nomePacienteInput.setText(paciente.getNome());
@@ -100,19 +112,10 @@ public class UpdateInformacaoBasicaPaciente extends javax.swing.JFrame implement
             distritoNascimentoInput.setText(paciente.getDistritoNascimento());
             distritoNascimentoPreenchido = true;
 
-            habilitarCampo(usAssistenciaInput);
-            usAssistenciaInput.setText(caso.getUsDeAssistencia());
-            usDeAssistenciaPreenchido = true;
-
-            habilitarCampo(localUsInput);
-            localUsInput.setText(caso.getUsDeAssistencia());
-            localDaUsPreenchido = true;
-
             nidPreenchido = true;
-            
+
             avancarBTN.setEnabled(true);
             avancarBTN.requestFocus();
-
 
         } else {
             String mensagem = "Nao foi fornecido nenhum NID\n, portanto,\n nao ha dados para actualizar,\n Redireccionando ao Menu";
@@ -410,7 +413,7 @@ public class UpdateInformacaoBasicaPaciente extends javax.swing.JFrame implement
         });
 
         avancarBTN.setBackground(new java.awt.Color(153, 255, 153));
-        avancarBTN.setText("Avancar");
+        avancarBTN.setText("Avançar");
         avancarBTN.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 avancarBTNActionPerformed(evt);
@@ -602,7 +605,6 @@ public class UpdateInformacaoBasicaPaciente extends javax.swing.JFrame implement
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
- 
 
     private void localUsInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_localUsInputActionPerformed
         var localUsValue = localUsInput.getText().trim();
@@ -617,7 +619,7 @@ public class UpdateInformacaoBasicaPaciente extends javax.swing.JFrame implement
                 localUsInput.requestFocus();
             }
         } else {
-            showMessageDialog(this, "Deve Preencher o Campo antes de avancar.", "Local da US Vazio", ERROR_MESSAGE);
+            showMessageDialog(this, "Deve Preencher o Campo antes de Avançar.", "Local da US Vazio", ERROR_MESSAGE);
             localUsInput.requestFocus();
         }
     }//GEN-LAST:event_localUsInputActionPerformed
@@ -693,7 +695,7 @@ public class UpdateInformacaoBasicaPaciente extends javax.swing.JFrame implement
                 desabilitarSelect(nivelCarreiraInput);
             }
         } else {
-            showMessageDialog(this, "Deve Preencher o Campo antes de avancar.", "Carreira Vazia", ERROR_MESSAGE);
+            showMessageDialog(this, "Deve Preencher o Campo antes de Avançar.", "Carreira Vazia", ERROR_MESSAGE);
             carreiraInput.requestFocus();
             desabilitarSelect(nivelCarreiraInput);
         }
@@ -712,7 +714,7 @@ public class UpdateInformacaoBasicaPaciente extends javax.swing.JFrame implement
                 desabilitarCampo(localUsInput);
             }
         } else {
-            showMessageDialog(this, "Deve Preencher o Campo antes de avancar.", "US de Assitencia Vazia", ERROR_MESSAGE);
+            showMessageDialog(this, "Deve Preencher o Campo antes de Avançar.", "US de Assitencia Vazia", ERROR_MESSAGE);
             usAssistenciaInput.requestFocus();
             desabilitarCampo(localUsInput);
         }
@@ -754,7 +756,7 @@ public class UpdateInformacaoBasicaPaciente extends javax.swing.JFrame implement
                 desabilitarSelect(sexoInput);
             }
         } else {
-            showMessageDialog(this, "Deve Preencher o Campo antes de avancar.", "Nome Vazio", ERROR_MESSAGE);
+            showMessageDialog(this, "Deve Preencher o Campo antes de Avançar.", "Nome Vazio", ERROR_MESSAGE);
             nomePacienteInput.requestFocus();
             desabilitarSelect(sexoInput);
         }
@@ -786,13 +788,13 @@ public class UpdateInformacaoBasicaPaciente extends javax.swing.JFrame implement
         var escolherAccao = new MenuPrincipal(usuario);
         escolherAccao.setLocationRelativeTo(null);
         escolherAccao.setVisible(true);
-       this.dispose();
+        this.dispose();
     }//GEN-LAST:event_cancelarBTNActionPerformed
 
     private void gaurdarRascunhoBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gaurdarRascunhoBTNActionPerformed
 
-        String mensagem = "Para aproveitar esta funcionalidade incrível, \n você pode fazer um upgrade do seu plano. \nContacte o desenvolvedor para mais detalhes";
-        showMessageDialog(this, mensagem, "Funcionalidade Premium", ERROR_MESSAGE);
+        String mensagem = "Para aproveitar esta funcionalidade incrível, \n você pode solicitar a versão completa do sistema. \nContacte o desenvolvedor para mais detalhes";
+        showMessageDialog(this, mensagem, "Funcionalidade Avançada", ERROR_MESSAGE);
 
     }//GEN-LAST:event_gaurdarRascunhoBTNActionPerformed
 
@@ -828,7 +830,7 @@ public class UpdateInformacaoBasicaPaciente extends javax.swing.JFrame implement
                 desabilitarCampo(dataNascimentoInput);
             }
         } else {
-            showMessageDialog(this, "Deve Preencher o Campo antes de avancar.", "Categoria Vazia", ERROR_MESSAGE);
+            showMessageDialog(this, "Deve Preencher o Campo antes de Avançar.", "Categoria Vazia", ERROR_MESSAGE);
             categoriaInput.requestFocus();
             desabilitarCampo(dataNascimentoInput);
         }
@@ -847,7 +849,7 @@ public class UpdateInformacaoBasicaPaciente extends javax.swing.JFrame implement
                 desabilitarCampo(usAssistenciaInput);
             }
         } else {
-            showMessageDialog(this, "Deve Preencher o Campo antes de avancar.", "Distrito Vazio", ERROR_MESSAGE);
+            showMessageDialog(this, "Deve Preencher o Campo antes de Avançar.", "Distrito Vazio", ERROR_MESSAGE);
             distritoNascimentoInput.requestFocus();
             desabilitarCampo(usAssistenciaInput);
         }
