@@ -56,16 +56,17 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                      <Component id="fecharAPP" max="32767" attributes="0"/>
+                      <Component id="terminarSessao" alignment="0" max="32767" attributes="0"/>
                       <Group type="102" alignment="1" attributes="0">
-                          <Group type="103" groupAlignment="1" attributes="0">
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="verDados" linkSize="1" min="-2" max="-2" attributes="0"/>
-                                  <Component id="produzirRelatorioBtn" linkSize="1" alignment="1" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <Component id="alterarSenha" linkSize="1" min="-2" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                              <Component id="verDados" linkSize="1" alignment="1" max="32767" attributes="0"/>
+                              <Component id="produzirRelatorioBtn" linkSize="1" alignment="1" max="32767" attributes="0"/>
+                              <Component id="alterarSenha" linkSize="1" max="32767" attributes="0"/>
+                              <Component id="recuperarConta" alignment="1" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
@@ -73,19 +74,16 @@
                               <Component id="inserirBtn" linkSize="1" min="-2" max="-2" attributes="0"/>
                               <Component id="criarUsuarioBtn" linkSize="1" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace min="0" pref="28" max="32767" attributes="0"/>
                       </Group>
-                      <Component id="terminarSessao" alignment="0" max="32767" attributes="0"/>
-                      <Component id="fecharAPP" alignment="0" max="32767" attributes="0"/>
                   </Group>
-                  <EmptySpace max="-2" attributes="0"/>
+                  <EmptySpace pref="34" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace pref="60" max="32767" attributes="0"/>
+                  <EmptySpace pref="19" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="inserirBtn" linkSize="2" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="verDados" linkSize="2" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -95,16 +93,18 @@
                       <Component id="produzirRelatorioBtn" linkSize="2" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="actualizarBtn" linkSize="2" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="criarUsuarioBtn" linkSize="2" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="alterarSenha" linkSize="2" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Component id="recuperarConta" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
                   <Component id="terminarSessao" linkSize="2" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="fecharAPP" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -120,7 +120,7 @@
         </Component>
         <Component class="javax.swing.JButton" name="actualizarBtn">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Actualizar registo existente"/>
+            <Property name="text" type="java.lang.String" value="Actualizar caso existente"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="actualizarBtnActionPerformed"/>
@@ -128,7 +128,10 @@
         </Component>
         <Component class="javax.swing.JButton" name="criarUsuarioBtn">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Adicionar Usuario"/>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="99" green="ff" red="33" type="rgb"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Cadastrar um Uusario"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="criarUsuarioBtnActionPerformed"/>
@@ -155,6 +158,9 @@
         </Component>
         <Component class="javax.swing.JButton" name="verDados">
           <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ff" green="ff" red="66" type="rgb"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Visualizar Dados"/>
           </Properties>
           <Events>
@@ -186,6 +192,17 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="fecharAPPActionPerformed"/>
           </Events>
         </Component>
+        <Component class="javax.swing.JButton" name="recuperarConta">
+          <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="33" green="ff" red="ff" type="rgb"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Recuperar Conta de Usuario"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="recuperarContaActionPerformed"/>
+          </Events>
+        </Component>
       </SubComponents>
     </Container>
     <Container class="javax.swing.JPanel" name="esquerda">
@@ -203,16 +220,8 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="1" attributes="0">
                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="1" attributes="0">
-                          <Component id="hospital" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="89" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="1" attributes="0">
-                          <Component id="sistema1" min="-2" pref="249" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                      </Group>
-                  </Group>
+                  <Component id="sistema1" min="-2" pref="249" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
               </Group>
               <Group type="102" alignment="1" attributes="0">
                   <EmptySpace pref="31" max="32767" attributes="0"/>
@@ -235,6 +244,7 @@
                                   <Group type="103" groupAlignment="1" attributes="0">
                                       <Component id="servicos" min="-2" max="-2" attributes="0"/>
                                       <Component id="republica" min="-2" max="-2" attributes="0"/>
+                                      <Component id="hospital" alignment="1" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace min="-2" pref="66" max="-2" attributes="0"/>
                               </Group>
@@ -315,7 +325,7 @@
         </Component>
         <Component class="javax.swing.JLabel" name="lema">
           <Properties>
-            <Property name="text" type="java.lang.String" value="O nosso maior valor é a vida"/>
+            <Property name="text" type="java.lang.String" value="O nosso maior valor &#xe9; a vida"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="sistema1">

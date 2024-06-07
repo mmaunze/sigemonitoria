@@ -7,7 +7,7 @@ import sigemonitoria.vista.MenuPrincipal;
  *
  * @author Meldo Maunze
  */
-public class CadastrarUsuario extends javax.swing.JFrame {
+ class CadastrarUsuario extends javax.swing.JFrame {
 
     Utilizador usuario;
 
@@ -61,7 +61,7 @@ public class CadastrarUsuario extends javax.swing.JFrame {
         voltarBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
-        setTitle("Alterar Senha");
+        setTitle("Cadastrar Utilizador");
         setResizable(false);
 
         esquerda.setBackground(new java.awt.Color(255, 255, 255));

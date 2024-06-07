@@ -409,6 +409,7 @@ public class LocalTrabalhoResidencia extends javax.swing.JFrame implements Metod
             if (distritoValue.matches("[a-zA-Z ]+")) {
                 distritoResidenciaPreenchido = true;
                 doente.setDistritoResidencia(distritoValue);
+                estabelecimentoSaudeInput.setText(usuario.getHospital().getNomeHospital());
                 habilitarCampo(estabelecimentoSaudeInput);
             } else {
                 showMessageDialog(this, "O Distrito deve conter apenas letras.", "Entrada inválida", ERROR_MESSAGE);

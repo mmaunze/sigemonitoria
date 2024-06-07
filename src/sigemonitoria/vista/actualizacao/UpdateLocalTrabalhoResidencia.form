@@ -170,20 +170,15 @@
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="provinciaNacimentoLabel" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="estabelecimentoSaudeLabel" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="moradaLabel" alignment="0" max="32767" attributes="0"/>
-                                  </Group>
-                                  <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="estabelecimentoSaudeInput" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="provinciaResidenciaInput" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="moradaInput" alignment="0" max="32767" attributes="0"/>
-                                  </Group>
-                              </Group>
-                              <Component id="username" alignment="0" max="32767" attributes="0"/>
+                              <Component id="provinciaNacimentoLabel" alignment="0" max="32767" attributes="0"/>
+                              <Component id="estabelecimentoSaudeLabel" alignment="0" pref="202" max="32767" attributes="0"/>
+                              <Component id="moradaLabel" alignment="0" max="32767" attributes="0"/>
+                          </Group>
+                          <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="estabelecimentoSaudeInput" alignment="0" max="32767" attributes="0"/>
+                              <Component id="provinciaResidenciaInput" alignment="0" pref="180" max="32767" attributes="0"/>
+                              <Component id="moradaInput" alignment="0" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
@@ -196,6 +191,10 @@
                               <Component id="sectorTrabalhoInput" linkSize="1" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" attributes="0">
+                          <Component id="username" min="-2" pref="320" max="-2" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -321,7 +320,7 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="0" green="0" red="ff" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="O Nosso Maior Valor é a vida"/>
+            <Property name="text" type="java.lang.String" value="O Nosso Maior Valor &#xe9; a vida"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="recuarBTN">

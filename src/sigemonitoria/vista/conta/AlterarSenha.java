@@ -10,7 +10,7 @@ import sigemonitoria.vista.MenuPrincipal;
  *
  * @author Meldo Maunze
  */
-public class AlterarSenha extends javax.swing.JFrame {
+ class AlterarSenha extends javax.swing.JFrame {
 
     Utilizador usuario;
 

@@ -10,9 +10,7 @@ import static javax.swing.UIManager.setLookAndFeel;
 import javax.swing.UnsupportedLookAndFeelException;
 import sigemonitoria.Sigemonitoria;
 import sigemonitoria.modelo.Utilizador;
-import sigemonitoria.vista.admin.CadastrarUsuario;
 import sigemonitoria.vista.cadastro.InformacaoBasicaPaciente;
-import sigemonitoria.vista.conta.AlterarSenha;
 import sigemonitoria.vista.dados.ProduzirRelatorioPeriodico;
 
 /**
@@ -60,6 +58,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         verDados = new javax.swing.JButton();
         terminarSessao = new javax.swing.JButton();
         fecharAPP = new javax.swing.JButton();
+        recuperarConta = new javax.swing.JButton();
         esquerda = new javax.swing.JPanel();
         emblema = new javax.swing.JLabel();
         republica = new javax.swing.JLabel();
@@ -85,14 +84,15 @@ public class MenuPrincipal extends javax.swing.JFrame {
             }
         });
 
-        actualizarBtn.setText("Actualizar registo existente");
+        actualizarBtn.setText("Actualizar caso existente");
         actualizarBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 actualizarBtnActionPerformed(evt);
             }
         });
 
-        criarUsuarioBtn.setText("Adicionar Usuario");
+        criarUsuarioBtn.setBackground(new java.awt.Color(51, 255, 153));
+        criarUsuarioBtn.setText("Cadastrar um Uusario");
         criarUsuarioBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 criarUsuarioBtnActionPerformed(evt);
@@ -114,6 +114,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
             }
         });
 
+        verDados.setBackground(new java.awt.Color(102, 255, 255));
         verDados.setText("Visualizar Dados");
         verDados.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -138,28 +139,35 @@ public class MenuPrincipal extends javax.swing.JFrame {
             }
         });
 
+        recuperarConta.setBackground(new java.awt.Color(255, 255, 51));
+        recuperarConta.setText("Recuperar Conta de Usuario");
+        recuperarConta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                recuperarContaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout direitaLayout = new javax.swing.GroupLayout(direita);
         direita.setLayout(direitaLayout);
         direitaLayout.setHorizontalGroup(
             direitaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(direitaLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(direitaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, direitaLayout.createSequentialGroup()
-                        .addGroup(direitaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(direitaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(verDados)
-                                .addComponent(produzirRelatorioBtn, javax.swing.GroupLayout.Alignment.TRAILING))
-                            .addComponent(alterarSenha))
+                .addGroup(direitaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(fecharAPP, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(terminarSessao, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(direitaLayout.createSequentialGroup()
+                        .addGroup(direitaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(verDados, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(produzirRelatorioBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(alterarSenha, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(recuperarConta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(18, 18, 18)
                         .addGroup(direitaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(actualizarBtn)
                             .addComponent(inserirBtn)
-                            .addComponent(criarUsuarioBtn))
-                        .addGap(0, 28, Short.MAX_VALUE))
-                    .addComponent(terminarSessao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(fecharAPP, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+                            .addComponent(criarUsuarioBtn))))
+                .addContainerGap(34, Short.MAX_VALUE))
         );
 
         direitaLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {actualizarBtn, alterarSenha, criarUsuarioBtn, inserirBtn, produzirRelatorioBtn, verDados});
@@ -167,7 +175,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         direitaLayout.setVerticalGroup(
             direitaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, direitaLayout.createSequentialGroup()
-                .addContainerGap(60, Short.MAX_VALUE)
+                .addContainerGap(19, Short.MAX_VALUE)
                 .addGroup(direitaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(inserirBtn)
                     .addComponent(verDados))
@@ -175,15 +183,17 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 .addGroup(direitaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(produzirRelatorioBtn)
                     .addComponent(actualizarBtn))
-                .addGap(43, 43, 43)
+                .addGap(18, 18, 18)
                 .addGroup(direitaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(criarUsuarioBtn)
                     .addComponent(alterarSenha))
-                .addGap(32, 32, 32)
+                .addGap(18, 18, 18)
+                .addComponent(recuperarConta)
+                .addGap(39, 39, 39)
                 .addComponent(terminarSessao)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(fecharAPP)
-                .addGap(13, 13, 13))
+                .addGap(31, 31, 31))
         );
 
         direitaLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {actualizarBtn, alterarSenha, criarUsuarioBtn, inserirBtn, produzirRelatorioBtn, terminarSessao, verDados});
@@ -218,13 +228,8 @@ public class MenuPrincipal extends javax.swing.JFrame {
             esquerdaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, esquerdaLayout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addGroup(esquerdaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, esquerdaLayout.createSequentialGroup()
-                        .addComponent(hospital)
-                        .addGap(89, 89, 89))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, esquerdaLayout.createSequentialGroup()
-                        .addComponent(sistema1, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())))
+                .addComponent(sistema1, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, esquerdaLayout.createSequentialGroup()
                 .addContainerGap(31, Short.MAX_VALUE)
                 .addGroup(esquerdaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -242,7 +247,8 @@ public class MenuPrincipal extends javax.swing.JFrame {
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, esquerdaLayout.createSequentialGroup()
                                 .addGroup(esquerdaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(servicos)
-                                    .addComponent(republica))
+                                    .addComponent(republica)
+                                    .addComponent(hospital))
                                 .addGap(66, 66, 66))))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, esquerdaLayout.createSequentialGroup()
                         .addGroup(esquerdaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -321,18 +327,18 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_actualizarBtnActionPerformed
 
     private void criarUsuarioBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_criarUsuarioBtnActionPerformed
-        var escolherAccao = new CadastrarUsuario(usuario);
-        escolherAccao.setLocationRelativeTo(null);
-        escolherAccao.setVisible(true);
-            this.dispose();
+   
+        String mensagem = "Para aproveitar esta funcionalidade incrível, \nvocê pode fazer um upgrade do seu plano. \nContacte o desenvolvedor para mais detalhes";
+        showMessageDialog(this, mensagem, "Funcionalidade Premium", ERROR_MESSAGE);
+        
     }//GEN-LAST:event_criarUsuarioBtnActionPerformed
 
     private void alterarSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_alterarSenhaActionPerformed
 
-        var escolherAccao = new AlterarSenha(usuario);
-        escolherAccao.setLocationRelativeTo(null);
-        escolherAccao.setVisible(true);
-       this.dispose();
+
+   String mensagem = "Para aproveitar esta funcionalidade incrível, \nvocê pode fazer um upgrade do seu plano. \nContacte o desenvolvedor para mais detalhes";
+        showMessageDialog(this, mensagem, "Funcionalidade Premium", ERROR_MESSAGE);
+        
     }//GEN-LAST:event_alterarSenhaActionPerformed
 
     private void produzirRelatorioBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_produzirRelatorioBtnActionPerformed
@@ -346,6 +352,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         String mensagem = "Para aproveitar esta funcionalidade incrível, \nvocê pode fazer um upgrade do seu plano. \nContacte o desenvolvedor para mais detalhes";
 
         showMessageDialog(this, mensagem, "Funcionalidade Premium", ERROR_MESSAGE);
+        
     }//GEN-LAST:event_verDadosActionPerformed
 
     private void terminarSessaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_terminarSessaoActionPerformed
@@ -359,6 +366,12 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private void fecharAPPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fecharAPPActionPerformed
         this.dispose();
     }//GEN-LAST:event_fecharAPPActionPerformed
+
+    private void recuperarContaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_recuperarContaActionPerformed
+        String mensagem = "Para aproveitar esta funcionalidade incrível, \nvocê pode fazer um upgrade do seu plano. \nContacte o desenvolvedor para mais detalhes";
+        showMessageDialog(this, mensagem, "Funcionalidade Premium", ERROR_MESSAGE);
+        
+    }//GEN-LAST:event_recuperarContaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -394,6 +407,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel lema;
     private javax.swing.JButton produzirRelatorioBtn;
     private javax.swing.JLabel provincia;
+    private javax.swing.JButton recuperarConta;
     private javax.swing.JLabel republica;
     private javax.swing.JLabel servicos;
     private javax.swing.JLabel sistema1;

@@ -241,11 +241,63 @@ public class Sigemonitoria extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void usernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usernameActionPerformed
-        // TODO add your handling code here:
+      var  usernameTXT = username.getText();
+      if (!usernameTXT.isBlank())
+          senha.requestFocus();
     }//GEN-LAST:event_usernameActionPerformed
 
     private void senhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_senhaActionPerformed
-        // TODO add your handling code here:
+        var mensagem = "";
+        var user = username.getText();
+        var senhaArray = senha.getPassword();
+        var senhaDigitada = new String(senhaArray);
+        if (user.isEmpty()) {
+            tentativasIncorretas++;
+            mensagem = "O nome de usuario nao pode estar vazio  \nTentativas: " + tentativasIncorretas + " de 3.";
+
+            showMessageDialog(this, mensagem, "Campo vazio", ERROR_MESSAGE);
+
+        } else if (senhaDigitada.isEmpty()) {
+            tentativasIncorretas++;
+
+            mensagem = "A senha nao pode estar vazia  \nTentativas: " + tentativasIncorretas + " de 3.";
+
+            showMessageDialog(this, mensagem, "Campo vazio", ERROR_MESSAGE);
+        } else {
+            var jpql = "SELECT u FROM Utilizador u WHERE u.username = :nomeUsuario AND u.senha = :senhaDigitada";
+            var query = entityManager.createQuery(jpql, Utilizador.class);
+            query.setParameter("nomeUsuario", user);
+            query.setParameter("senhaDigitada", senhaDigitada);
+
+            try {
+                var usuario = query.getSingleResult();
+                if (usuario != null) {
+                    showMessageDialog(this, " Bem-vindo! \n" + usuario.getNomeCompleto(), "Login Bem Sucedido", INFORMATION_MESSAGE);
+                    var escolherAccao = new MenuPrincipal(usuario);
+                    escolherAccao.setLocationRelativeTo(null);
+                    escolherAccao.setVisible(true);
+                    this.dispose();
+                } else {
+                    tentativasIncorretas++;
+                    showMessageDialog(this, "Senha incorreta ou usuário não encontrado. Tente novamente \nTentativas: " + tentativasIncorretas + " de 3.");
+                }
+            } catch (NoResultException e) {
+                tentativasIncorretas++;
+                showMessageDialog(this, "Senha incorreta ou usuário não encontrado. Tente novamente \nTentativas: " + tentativasIncorretas + " de 3.");
+
+            }
+
+        }
+        if (tentativasIncorretas == 3) {
+            showMessageDialog(this, "Atingiu o numero de tentativas permitidas", "Campos Bloqueados", ERROR_MESSAGE);
+            loginBTN.setVisible(false);
+            senha.setVisible(false);
+            username.setVisible(false);
+            senhaLabel.setVisible(false);
+            usernameLabel.setVisible(false);
+            fecharAPP.setVisible(false);
+            autenticacao.setText("Login Bloqueado Por Atingit O numero Maimo de Tentativas");
+        }
     }//GEN-LAST:event_senhaActionPerformed
 
     private void loginBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginBTNActionPerformed
@@ -294,11 +346,12 @@ public class Sigemonitoria extends javax.swing.JFrame {
         if (tentativasIncorretas == 3) {
             showMessageDialog(this, "Atingiu o numero de tentativas permitidas", "Campos Bloqueados", ERROR_MESSAGE);
             loginBTN.setVisible(false);
+            fecharAPP.setVisible(false);
             senha.setVisible(false);
             username.setVisible(false);
             senhaLabel.setVisible(false);
             usernameLabel.setVisible(false);
-            autenticacao.setText("Login Bloqueado Por Atingit O numero Maimo de Tentativas");
+            autenticacao.setText("Login Bloqueado Por Atingir\n O numero Maximo de Tentativas");
         }
     }//GEN-LAST:event_loginBTNActionPerformed
 

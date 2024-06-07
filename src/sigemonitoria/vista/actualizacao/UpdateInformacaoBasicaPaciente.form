@@ -171,28 +171,23 @@
               </Group>
               <Group type="102" alignment="0" attributes="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" attributes="0">
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="dataRegisto" max="32767" attributes="0"/>
-                              <Component id="nomePacienteLabel" alignment="0" max="32767" attributes="0"/>
-                              <Component id="carreiraLabel" alignment="0" max="32767" attributes="0"/>
-                              <Component id="categoriaLabel" max="32767" attributes="0"/>
-                              <Component id="idadeLabel" alignment="0" max="32767" attributes="0"/>
-                              <Component id="provinciaNacimentoLabel" alignment="0" max="32767" attributes="0"/>
-                              <Component id="usAssitenciaLabel" alignment="0" max="32767" attributes="0"/>
-                          </Group>
-                          <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="dataRegistoCasoInput" alignment="0" max="32767" attributes="0"/>
-                              <Component id="nomePacienteInput" alignment="0" max="32767" attributes="0"/>
-                              <Component id="carreiraInput" alignment="0" max="32767" attributes="0"/>
-                              <Component id="idadeInput" max="32767" attributes="0"/>
-                              <Component id="categoriaInput" max="32767" attributes="0"/>
-                              <Component id="usAssistenciaInput" alignment="0" max="32767" attributes="0"/>
-                              <Component id="provinciaNascimentoInput" alignment="0" max="32767" attributes="0"/>
-                          </Group>
-                      </Group>
-                      <Component id="username" max="32767" attributes="0"/>
+                      <Component id="dataRegisto" max="32767" attributes="0"/>
+                      <Component id="nomePacienteLabel" alignment="0" max="32767" attributes="0"/>
+                      <Component id="carreiraLabel" alignment="0" max="32767" attributes="0"/>
+                      <Component id="categoriaLabel" max="32767" attributes="0"/>
+                      <Component id="idadeLabel" alignment="0" max="32767" attributes="0"/>
+                      <Component id="provinciaNacimentoLabel" alignment="0" pref="204" max="32767" attributes="0"/>
+                      <Component id="usAssitenciaLabel" alignment="0" max="32767" attributes="0"/>
+                  </Group>
+                  <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="dataRegistoCasoInput" alignment="0" max="32767" attributes="0"/>
+                      <Component id="nomePacienteInput" alignment="0" max="32767" attributes="0"/>
+                      <Component id="carreiraInput" alignment="0" max="32767" attributes="0"/>
+                      <Component id="idadeInput" max="32767" attributes="0"/>
+                      <Component id="categoriaInput" max="32767" attributes="0"/>
+                      <Component id="usAssistenciaInput" alignment="0" max="32767" attributes="0"/>
+                      <Component id="provinciaNascimentoInput" alignment="0" pref="182" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
@@ -215,6 +210,10 @@
                       <Component id="distritoNascimentoInput" linkSize="5" alignment="0" min="-2" pref="201" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
+              </Group>
+              <Group type="102" attributes="0">
+                  <Component id="username" min="-2" pref="328" max="-2" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -573,7 +572,7 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="0" green="0" red="ff" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="O Nosso Maior Valor é a vida"/>
+            <Property name="text" type="java.lang.String" value="O Nosso Maior Valor &#xe9; a vida"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="recuarBTN">

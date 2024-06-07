@@ -2,6 +2,7 @@ package sigemonitoria.vista.cadastro;
 
 import static java.awt.EventQueue.invokeLater;
 import java.text.ParseException;
+import java.util.Date;
 import java.util.logging.Level;
 import static java.util.logging.Level.SEVERE;
 import java.util.logging.Logger;
@@ -727,7 +728,8 @@ public class ControleSeguimento extends javax.swing.JFrame implements MetodosGer
             situacaoActualPacientePreenchido = true;
             if (situacaoActualPacienteSelecionado.equals("Falecido")) {
                 habilitarCampo(dataFacecimentoInput);
-                situacaoActualPacienteInput.requestFocus();
+                dataFacecimentoInput.setText(converterDataParaString(new Date()));
+                dataFacecimentoInput.requestFocus();
                 caso.setSituacaoActualPaciente(situacaoActualPacienteSelecionado);
             } else {
                 guardarBTN.requestFocus();
@@ -768,6 +770,8 @@ public class ControleSeguimento extends javax.swing.JFrame implements MetodosGer
                     || "Normal".equals(valorSeleccionado)
                     || "Mal".equals(valorSeleccionado)) {
                 espActualPreenchido = true;
+                dataConsultaActualInput.setText(converterDataParaString(new Date()));
+
                 habilitarCampo(dataConsultaActualInput);
                 caso.setEspActual(valorSeleccionado);
             } else {
@@ -816,6 +820,7 @@ public class ControleSeguimento extends javax.swing.JFrame implements MetodosGer
                     || "Normal".equals(valorSeleccionado)
                     || "Mal".equals(valorSeleccionado)) {
                 espAnteriorPreenchido = true;
+                dataConsultaAnteriorInput.setText(converterDataParaString(new Date()));
 
                 habilitarCampo(dataConsultaAnteriorInput);
                 caso.setEspAnterior(valorSeleccionado);
@@ -836,6 +841,8 @@ public class ControleSeguimento extends javax.swing.JFrame implements MetodosGer
         if (dataTexto != null && !dataTexto.trim().isEmpty()) {
             dataConsultaActualPreencido = true;
             if (dataValida(dataTexto)) {
+                                                dataProximaConsultaInput.setText(converterDataParaString(new Date()));
+
                 habilitarCampo(dataProximaConsultaInput);
                 try {
                     caso.setDataConsultaActual(converterStringParaData(dataTexto));
@@ -910,7 +917,7 @@ public class ControleSeguimento extends javax.swing.JFrame implements MetodosGer
 
         try {
             doentes.create(doente);
-            JOptionPane.showMessageDialog(this, "\n Nome: " + doente.getNome() + "\nNID: " + doente.getNid() + "\n Idade: " + doente.getIdade(), "Doente Registado", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(this, "\nNome: " + doente.getNome() + "\nNID: " + doente.getNid() + "\n Idade: " + doente.getIdade(), "Doente Registado", JOptionPane.INFORMATION_MESSAGE);
 
         } catch (Exception ex) {
             Logger.getLogger(ControleSeguimento.class.getName()).log(Level.SEVERE, null, ex);
@@ -919,12 +926,12 @@ public class ControleSeguimento extends javax.swing.JFrame implements MetodosGer
         caso.setObservacao("Registo de Um novo Caso");
         casos.create(caso);
         System.out.println(caso);
-        JOptionPane.showMessageDialog(this, "\n Nid: " + caso.getNid().getNid() + "\nData: " + converterDataParaString(caso.getDataRegistoCaso()) + "\n US: " + caso.getUsDeAssistencia(), "Doente Registado", JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(this, "\nNid: " + caso.getNid().getNid() + "\nData: " + converterDataParaString(caso.getDataRegistoCaso()) + "\n US: " + caso.getUsDeAssistencia(), "Novo Caso Registado", JOptionPane.INFORMATION_MESSAGE);
 
         var escolherAccao = new MenuPrincipal(usuario);
         escolherAccao.setLocationRelativeTo(null);
         escolherAccao.setVisible(true);
-        this.setVisible(false);
+        this.dispose();
     }//GEN-LAST:event_guardarBTNActionPerformed
 
     private void dataFacecimentoInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dataFacecimentoInputActionPerformed

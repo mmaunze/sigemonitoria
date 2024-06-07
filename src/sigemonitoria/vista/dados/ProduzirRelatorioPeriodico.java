@@ -4,9 +4,23 @@
  */
 package sigemonitoria.vista.dados;
 
+import java.awt.HeadlessException;
+import java.io.IOException;
+import static java.lang.Integer.parseInt;
+import static java.util.Calendar.YEAR;
+import static java.util.Calendar.getInstance;
+import static java.util.logging.Level.SEVERE;
+import static java.util.logging.Logger.getLogger;
+import static javax.persistence.Persistence.createEntityManagerFactory;
+import static javax.swing.JOptionPane.ERROR_MESSAGE;
 import static javax.swing.JOptionPane.INFORMATION_MESSAGE;
 import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.UIManager.setLookAndFeel;
+import javax.swing.UnsupportedLookAndFeelException;
+import sigemonitoria.MetodosGerais;
 import sigemonitoria.Sigemonitoria;
+import sigemonitoria.controller.CasoJpaController;
+import sigemonitoria.controller.GeradorPDF;
 import sigemonitoria.modelo.Utilizador;
 import sigemonitoria.vista.MenuPrincipal;
 
@@ -14,7 +28,7 @@ import sigemonitoria.vista.MenuPrincipal;
  *
  * @author Meldo Maunze
  */
-public class ProduzirRelatorioPeriodico extends javax.swing.JFrame {
+public class ProduzirRelatorioPeriodico extends javax.swing.JFrame implements MetodosGerais {
 
     Utilizador usuario;
 
@@ -33,6 +47,8 @@ public class ProduzirRelatorioPeriodico extends javax.swing.JFrame {
         initComponents();
     }
 
+    int anoo, mesInicio, mesFim;
+    
     /**
      * Creates new form ProduzirRelatorioPeriodico
      */
@@ -167,14 +183,33 @@ public class ProduzirRelatorioPeriodico extends javax.swing.JFrame {
         esquerda1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         anoInput.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "seleccionar", "2020", "2021", "2022", "2023", "2024", "2025", "2026", "2027", "2028" }));
+        anoInput.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                anoInputActionPerformed(evt);
+            }
+        });
 
         anoLabel.setText("Ano");
 
         mesLabel.setText("Mes Inicial");
 
-        mesInicialInput.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "seleccionar", "Janeiro", "Fevereiro", "Marco", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro" }));
+        mesInicialInput.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "seleccionar", "Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro" }));
+        mesInicialInput.setEnabled(false);
+        mesInicialInput.setRequestFocusEnabled(false);
+        mesInicialInput.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mesInicialInputActionPerformed(evt);
+            }
+        });
 
-        mesFinalInput.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "seleccionar", "Janeiro", "Fevereiro", "Marco", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro" }));
+        mesFinalInput.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "seleccionar", "Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro" }));
+        mesFinalInput.setEnabled(false);
+        mesFinalInput.setRequestFocusEnabled(false);
+        mesFinalInput.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mesFinalInputActionPerformed(evt);
+            }
+        });
 
         mesLabel1.setText("Mes Final");
 
@@ -188,6 +223,8 @@ public class ProduzirRelatorioPeriodico extends javax.swing.JFrame {
 
         descarregarBTN.setBackground(new java.awt.Color(255, 204, 153));
         descarregarBTN.setText("descarregar");
+        descarregarBTN.setEnabled(false);
+        descarregarBTN.setFocusable(false);
         descarregarBTN.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 descarregarBTNActionPerformed(evt);
@@ -302,8 +339,42 @@ public class ProduzirRelatorioPeriodico extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_imprimirBTNActionPerformed
 
+    
     private void descarregarBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_descarregarBTNActionPerformed
-        // TODO add your handling code here:
+        try {
+            var relatorios = new GeradorPDF();
+            var pct = findPacientesPorPeriodo(anoo, mesInicio, mesFim);
+            try {
+                relatorios.gerarRelatorio(pct, anoo, mesInicio, mesFim, usuario);
+            } catch (IOException ex) {
+                getLogger(ProduzirRelatorioPeriodico.class.getName()).log(SEVERE, null, ex);
+            }
+            showMessageDialog(null, "Relatório gerado com sucesso!", "Sucesso", INFORMATION_MESSAGE);
+
+        } catch (HeadlessException ex) {
+            showMessageDialog(null, "Erro ao gerar o relatório: " + ex.getMessage(), "Erro", ERROR_MESSAGE);
+        } finally {
+            this.setVisible(false);
+            var accoes = new MenuPrincipal(usuario);
+            try {
+                setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
+            } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException ex) {
+                getLogger(ProduzirRelatorioPeriodico.class.getName()).log(SEVERE, null, ex);
+            }
+            accoes.setLocationRelativeTo(null);
+            accoes.setVisible(true);
+            this.dispose();
+        }
+    }
+
+    private void ImprimirActionPerformed(java.awt.event.ActionEvent evt) {
+        var geradorPDF = new GeradorPDF();
+        var pct = findPacientesPorPeriodo(anoo, mesInicio, mesFim);
+        try {
+            geradorPDF.imprimirRelatorio(pct, anoo, mesInicio, mesFim, usuario);
+        } catch (IOException ex) {
+            getLogger(ProduzirRelatorioPeriodico.class.getName()).log(SEVERE, null, ex);
+        }
     }//GEN-LAST:event_descarregarBTNActionPerformed
 
     private void terminarSessaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_terminarSessaoActionPerformed
@@ -321,6 +392,41 @@ public class ProduzirRelatorioPeriodico extends javax.swing.JFrame {
         inicio.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_voltarBtnActionPerformed
+
+    private void anoInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_anoInputActionPerformed
+        try {
+            var anoDigitado = parseInt((String) anoInput.getSelectedItem());
+            var anoAtual = getInstance().get(YEAR);
+            if (anoDigitado >= 2010 && anoDigitado <= anoAtual) {
+                anoo = anoDigitado;
+                habilitarSelect(mesInicialInput);
+            } else {
+                showMessageDialog(this, "Ano inválido. Digite um ano entre 1930 e " + anoAtual, "Erro", ERROR_MESSAGE);
+                desabilitarSelect(mesInicialInput);
+            }
+
+        } catch (NumberFormatException e) {
+            showMessageDialog(this, "Formato de ano inválido. Digite um valor numérico.", "Erro", ERROR_MESSAGE);
+
+        }
+    }//GEN-LAST:event_anoInputActionPerformed
+
+    private void mesInicialInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mesInicialInputActionPerformed
+        mesInicio = obterNumeroMes((String) mesInicialInput.getSelectedItem());
+        habilitarSelect(mesFinalInput);
+    }//GEN-LAST:event_mesInicialInputActionPerformed
+
+    private void mesFinalInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mesFinalInputActionPerformed
+        mesFim = obterNumeroMes((String) mesFinalInput.getSelectedItem());
+        if (mesFim <= mesInicio) {
+            showMessageDialog(null, "O mes deve ser maior que o primeiro ", "Mes Inferior", ERROR_MESSAGE);
+            mesFinalInput.setSelectedIndex(0);
+            mesFim = 0;
+        } else {
+            descarregarBTN.setEnabled(true);
+            descarregarBTN.requestFocus();
+        }
+    }//GEN-LAST:event_mesFinalInputActionPerformed
 
     /**
      * @param args the command line arguments
@@ -342,7 +448,7 @@ public class ProduzirRelatorioPeriodico extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(ProduzirRelatorioPeriodico.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        
+
         //</editor-fold>
 
         /* Create and display the form */

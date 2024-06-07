@@ -4,14 +4,22 @@ import java.text.DateFormatSymbols;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import static java.util.Calendar.DAY_OF_MONTH;
 import static java.util.Calendar.DAY_OF_YEAR;
+import static java.util.Calendar.MONTH;
 import static java.util.Calendar.YEAR;
 import static java.util.Calendar.getInstance;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.List;
 import java.util.Locale;
+import javax.persistence.EntityManagerFactory;
+import static javax.persistence.Persistence.createEntityManagerFactory;
+import static javax.persistence.TemporalType.DATE;
 import javax.swing.JComboBox;
 import javax.swing.JTextField;
+import sigemonitoria.controller.DoenteJpaController;
+import sigemonitoria.modelo.Caso;
 
 /**
  *
@@ -41,6 +49,21 @@ public interface MetodosGerais {
         var dataFormatada = df.format(data);
         var partes = dataFormatada.split("-");
         return String.format("%s/%s/%s", partes[2], partes[1], partes[0]);
+    }
+
+    public default String gerarNid() {
+
+        EntityManagerFactory emf = createEntityManagerFactory("sigemonitoriaPU");
+        DoenteJpaController doentes = new DoenteJpaController(emf);
+        Integer n = Integer.valueOf((doentes.findDoenteEntities()).get((doentes.findDoenteEntities().size()) - 1).getNid());
+        n = n + 1;
+        if (n > 99999) {
+            n = n / 10;
+            return String.valueOf(n);
+        } else {
+            return String.valueOf(n);
+        }
+
     }
 
     /**
@@ -170,5 +193,46 @@ public interface MetodosGerais {
         campo.setFocusable(false);
         campo.setSelectedIndex(0);
     }
+    
+          public default  int obterNumeroMes(String nomeMes) {
+        var symbols = new DateFormatSymbols(new Locale("pt", "BR"));
+        var meses = symbols.getMonths();
+        for (var i = 0; i < meses.length; i++) {
+            if (meses[i].equalsIgnoreCase(nomeMes)) {
+                return i + 1;
+            }
+        }
+        return 0;
+    }
+          
+        public default List<Caso> findPacientesPorPeriodo(int ano, int mesInicio, int mesFim) {
+        EntityManagerFactory emf = createEntityManagerFactory("sigemonitoriaPU");
+        var em = emf.createEntityManager();
+        
+        var dataInicio = converterParaData(ano, mesInicio, 1);
+        var dataFim = converterParaData(ano, mesFim, 28);
+        try {
+            // Consulta JPQL para obter pacientes dentro do período especificado
+            var query = em.createQuery(
+                    "SELECT c FROM Caso c "
+                    + "WHERE c.dataRegistoCaso >= :dataInicio AND c.dataRegistoCaso <= :dataFim "
+                    + "ORDER BY c.dataRegistoCaso",
+                    Caso.class);
+            query.setParameter("dataInicio", dataInicio, DATE);
+            query.setParameter("dataFim", dataFim, DATE);
 
+            // Executa a consulta
+            return query.getResultList();
+        } finally {
+            em.close();
+        }
+    }
+
+           private Date converterParaData(int ano, int mes, int dia) {
+        var calendar = getInstance();
+        calendar.set(YEAR, ano);
+        calendar.set(MONTH, mes - 1); // Mês em Java é baseado em zero (janeiro = 0, fevereiro = 1, ...)
+        calendar.set(DAY_OF_MONTH, dia);
+        return calendar.getTime();
+    }
 }

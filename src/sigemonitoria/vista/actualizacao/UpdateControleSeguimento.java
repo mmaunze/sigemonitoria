@@ -2,6 +2,7 @@ package sigemonitoria.vista.actualizacao;
 
 import static java.awt.EventQueue.invokeLater;
 import java.text.ParseException;
+import java.util.Date;
 import java.util.logging.Level;
 import static java.util.logging.Level.SEVERE;
 import java.util.logging.Logger;
@@ -30,6 +31,7 @@ public class UpdateControleSeguimento extends javax.swing.JFrame implements Meto
     EntityManagerFactory emf = createEntityManagerFactory("sigemonitoriaPU");
 
     DoenteJpaController doentes = new DoenteJpaController(emf);
+    
     CasoJpaController casos = new CasoJpaController(emf);
     Caso caso;
     Doente doente;
@@ -105,7 +107,7 @@ public class UpdateControleSeguimento extends javax.swing.JFrame implements Meto
         dataFacecimentoInput = new javax.swing.JTextField();
         recuarBTN = new javax.swing.JButton();
         username = new javax.swing.JTextField();
-        guardarBTN = new javax.swing.JButton();
+        actualizarBTN = new javax.swing.JButton();
         avancarBTN = new javax.swing.JButton();
         gaurdarRascunhoBTN = new javax.swing.JButton();
         lema = new javax.swing.JLabel();
@@ -370,11 +372,11 @@ public class UpdateControleSeguimento extends javax.swing.JFrame implements Meto
         username.setFocusable(false);
         username.setRequestFocusEnabled(false);
 
-        guardarBTN.setBackground(new java.awt.Color(153, 255, 153));
-        guardarBTN.setText("guardar");
-        guardarBTN.addActionListener(new java.awt.event.ActionListener() {
+        actualizarBTN.setBackground(new java.awt.Color(153, 255, 153));
+        actualizarBTN.setText("Actualizar");
+        actualizarBTN.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                guardarBTNActionPerformed(evt);
+                actualizarBTNActionPerformed(evt);
             }
         });
 
@@ -474,7 +476,7 @@ public class UpdateControleSeguimento extends javax.swing.JFrame implements Meto
                             .addComponent(recuarBTN, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(cadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(guardarBTN, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(actualizarBTN, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(avancarBTN, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addGap(0, 65, Short.MAX_VALUE))
         );
@@ -531,7 +533,7 @@ public class UpdateControleSeguimento extends javax.swing.JFrame implements Meto
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
                 .addGroup(cadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(recuarBTN)
-                    .addComponent(guardarBTN)
+                    .addComponent(actualizarBTN)
                     .addComponent(username, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(cadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -724,11 +726,11 @@ public class UpdateControleSeguimento extends javax.swing.JFrame implements Meto
             situacaoActualPacientePreenchido = true;
             if (situacaoActualPacienteSelecionado.equals("Falecido")) {
                 habilitarCampo(dataFacecimentoInput);
-                situacaoActualPacienteInput.requestFocus();
+                dataFacecimentoInput.requestFocus();
                 caso.setSituacaoActualPaciente(situacaoActualPacienteSelecionado);
             } else {
-                guardarBTN.requestFocus();
-                guardarBTN.setEnabled(true);
+                actualizarBTN.requestFocus();
+                actualizarBTN.setEnabled(true);
                 caso.setSituacaoActualPaciente(situacaoActualPacienteSelecionado);
             }
         } else {
@@ -813,7 +815,6 @@ public class UpdateControleSeguimento extends javax.swing.JFrame implements Meto
                     || "Normal".equals(valorSeleccionado)
                     || "Mal".equals(valorSeleccionado)) {
                 espAnteriorPreenchido = true;
-
                 habilitarCampo(dataConsultaAnteriorInput);
                 caso.setEspAnterior(valorSeleccionado);
             } else {
@@ -900,14 +901,14 @@ public class UpdateControleSeguimento extends javax.swing.JFrame implements Meto
 
         frame2.setLocationRelativeTo(null);
         frame2.setVisible(true);
-        this.setVisible(false);
+        this.dispose();
     }//GEN-LAST:event_recuarBTNActionPerformed
 
-    private void guardarBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarBTNActionPerformed
+    private void actualizarBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_actualizarBTNActionPerformed
 
         try {
-            doentes.create(doente);
-            JOptionPane.showMessageDialog(this, "\n Nome: " + doente.getNome() + "\nNID: " + doente.getNid() + "\n Idade: " + doente.getIdade(), "Doente Registado", JOptionPane.INFORMATION_MESSAGE);
+            doentes.edit(doente);
+            JOptionPane.showMessageDialog(this, "\n Nome: " + doente.getNome() + "\nNID: " + doente.getNid() + "\n Idade: " + doente.getIdade(), "Dados do Doente Actualizados", JOptionPane.INFORMATION_MESSAGE);
 
         } catch (Exception ex) {
             Logger.getLogger(UpdateControleSeguimento.class.getName()).log(Level.SEVERE, null, ex);
@@ -916,19 +917,19 @@ public class UpdateControleSeguimento extends javax.swing.JFrame implements Meto
         caso.setObservacao("Actualizacao de um Caso Existente");
         casos.create(caso);
         System.out.println(caso);
-        JOptionPane.showMessageDialog(this, "\n Nid: " + caso.getNid().getNid() + "\nData: " + converterDataParaString(caso.getDataRegistoCaso()) + "\n US: " + caso.getUsDeAssistencia(), "Doente Registado", JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(this, "\n Nid: " + caso.getNid().getNid() + "\nData: " + converterDataParaString(caso.getDataRegistoCaso()) + "\n US: " + caso.getUsDeAssistencia(), "Actualizacao de Caso Registada", JOptionPane.INFORMATION_MESSAGE);
 
         var escolherAccao = new MenuPrincipal(usuario);
         escolherAccao.setLocationRelativeTo(null);
         escolherAccao.setVisible(true);
         this.setVisible(false);
-    }//GEN-LAST:event_guardarBTNActionPerformed
+    }//GEN-LAST:event_actualizarBTNActionPerformed
 
     private void dataFacecimentoInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dataFacecimentoInputActionPerformed
         var dataTexto = dataFacecimentoInput.getText();
         if (dataTexto != null && !dataTexto.trim().isEmpty()) {
             if (dataValida(dataTexto)) {
-                guardarBTN.requestFocus();
+                actualizarBTN.requestFocus();
                 try {
                     caso.setDataFacelimento(converterStringParaData(dataTexto));
                 } catch (ParseException ex) {
@@ -967,6 +968,7 @@ public class UpdateControleSeguimento extends javax.swing.JFrame implements Meto
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel EspObservadoTxt;
+    private javax.swing.JButton actualizarBTN;
     private javax.swing.JComboBox<String> aonInput;
     private javax.swing.JLabel aonTxt;
     private javax.swing.JComboBox<String> apssInput;
@@ -995,7 +997,6 @@ public class UpdateControleSeguimento extends javax.swing.JFrame implements Meto
     private javax.swing.JComboBox<String> espAnteriorInput;
     private javax.swing.JComboBox<String> espObservadoInput;
     private javax.swing.JButton gaurdarRascunhoBTN;
-    private javax.swing.JButton guardarBTN;
     private javax.swing.JLabel hospital;
     private javax.swing.JLabel lema;
     private javax.swing.JLabel provincia;

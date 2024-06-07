@@ -2,6 +2,7 @@ package sigemonitoria.vista.cadastro;
 
 import static java.awt.EventQueue.invokeLater;
 import java.text.ParseException;
+import java.util.Date;
 import java.util.logging.Level;
 import static java.util.logging.Level.SEVERE;
 import java.util.logging.Logger;
@@ -44,7 +45,8 @@ public class InformacaoBasicaPaciente extends javax.swing.JFrame implements Meto
         this.usuario = usuario;
         this.username.setText(usuario.getNomeCompleto());
         this.hospital.setText(usuario.getHospital().getNomeHospital());
-
+        this.dataRegistoCasoInput.setText(converterDataParaString(new Date()));
+        this.nidInput.setText(gerarNid());
     }
 
     private InformacaoBasicaPaciente() {
@@ -603,7 +605,7 @@ public class InformacaoBasicaPaciente extends javax.swing.JFrame implements Meto
                 habilitarCampo(nomePacienteInput);
                 if (doentes.findDoente(nidValue) != null) {
                     var paciente = doentes.findDoente(nidValue);
-                    JOptionPane.showMessageDialog(this, "\n Nome: " + paciente.getNome() + "\nNID: " + paciente.getNid() + "\n Idade: " + paciente.getIdade(), "Doente Encontrado", JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane.showMessageDialog(this, "\nNome: " + paciente.getNome() + "\nNID: " + paciente.getNid() + "\nIdade: " + paciente.getIdade(), "Doente Encontrado", JOptionPane.INFORMATION_MESSAGE);
                     JOptionPane.showMessageDialog(this, "Como o doente foi encontrado, \nsera redirrecionado a tela de actualizacao", "Redireccionando", JOptionPane.INFORMATION_MESSAGE);
                     this.dispose();
                     var tela1 = new UpdateInformacaoBasicaPaciente(usuario, paciente);
@@ -652,6 +654,7 @@ public class InformacaoBasicaPaciente extends javax.swing.JFrame implements Meto
             if (usAssistenciaValue.matches("[a-zA-Z ]+")) {
                 usDeAssistenciaPreenchido = true;
                 habilitarCampo(localUsInput);
+                localUsInput.setText(usuario.getHospital().getEndereco());
                 caso.setUsDeAssistencia(usAssistenciaValue);
             } else {
                 showMessageDialog(this, "A US de Assitencia deve conter apenas letras.", "Entrada inválida", ERROR_MESSAGE);
@@ -673,7 +676,6 @@ public class InformacaoBasicaPaciente extends javax.swing.JFrame implements Meto
                 habilitarCampo(nidInput);
                 try {
                     caso.setDataRegistoCaso(converterStringParaData(dataTexto));
-
                 } catch (ParseException ex) {
                     Logger.getLogger(InformacaoBasicaPaciente.class
                             .getName()).log(Level.SEVERE, null, ex);
@@ -770,6 +772,8 @@ public class InformacaoBasicaPaciente extends javax.swing.JFrame implements Meto
             if (categoriaValue.matches("[a-zA-Z ]+")) {
                 categoriaPreenchido = true;
                 doente.setCategoria(categoriaValue);
+                                dataNascimentoInput.setText(converterDataParaString(new Date()));
+
                 habilitarCampo(dataNascimentoInput);
             } else {
                 showMessageDialog(this, "A categoria deve conter apenas letras.", "ERRO", ERROR_MESSAGE);
@@ -789,6 +793,7 @@ public class InformacaoBasicaPaciente extends javax.swing.JFrame implements Meto
             if (distritoValue.matches("[a-zA-Z ]+")) {
                 distritoNascimentoPreenchido = true;
                 doente.setDistritoNascimento(distritoValue);
+                usAssistenciaInput.setText(usuario.getHospital().getNomeHospital());
                 habilitarCampo(usAssistenciaInput);
             } else {
                 showMessageDialog(this, "O Distrito deve conter apenas letras.", "Entrada inválida", ERROR_MESSAGE);
@@ -872,7 +877,7 @@ public class InformacaoBasicaPaciente extends javax.swing.JFrame implements Meto
         var escolherAccao = new MenuPrincipal(usuario);
         escolherAccao.setLocationRelativeTo(null);
         escolherAccao.setVisible(true);
-        this.setVisible(false);
+        this.dispose();
     }//GEN-LAST:event_recuarBTNActionPerformed
 
     /**
